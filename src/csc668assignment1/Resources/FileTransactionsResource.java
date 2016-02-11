@@ -5,9 +5,9 @@
  */
 package csc668assignment1.Resources;
 
-import csc668assignment1.Payment.CashPayment;
-import csc668assignment1.Payment.CreditPayment;
-import csc668assignment1.Payment.Payment;
+import csc668assignment1.Payments.CashPayment;
+import csc668assignment1.Payments.CreditPayment;
+import csc668assignment1.Payments.Payment;
 import csc668assignment1.Transaction;
 import java.io.BufferedReader;
 import java.io.IOException;
