@@ -5,8 +5,6 @@
  */
 package csc668assignment1.Payments;
 
-import csc668assignment1.Payments.Payment;
-
 /**
  *
  * @author axelanconaesselmann

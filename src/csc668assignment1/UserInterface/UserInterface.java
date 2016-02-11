@@ -5,7 +5,7 @@
 package csc668assignment1.UserInterface;
 
 import csc668assignment1.Invoice;
-import csc668assignment1.Payment.Payment;
+import csc668assignment1.Payments.Payment;
 import csc668assignment1.Product;
 import csc668assignment1.Resources.ProductsResourceInterface;
 import csc668assignment1.Resources.TransactionsResource;

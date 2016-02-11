@@ -6,8 +6,6 @@ package csc668assignment1.UserInterface;
 import csc668assignment1.Resources.FileProductsResource;
 import csc668assignment1.Resources.FileTransactionsResource;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
