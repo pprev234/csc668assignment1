@@ -21,11 +21,8 @@ public class ConsoleUserInterface extends UserInterface {
         try {
             _transactions = new FileTransactionsResource(transactionsFileName);
             _products     = new FileProductsResource(productsFileName);
-            
-            System.out.print("Working");
         } catch (IOException ex) {
-            System.out.print("Not working");
+            this.printAlert("Could not initialize resources");
         }
-        
     }
 }

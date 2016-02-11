@@ -9,6 +9,7 @@ import csc668assignment1.Payments.Payment;
 import csc668assignment1.Product;
 import csc668assignment1.Resources.ProductsResourceInterface;
 import csc668assignment1.Resources.TransactionsResource;
+import csc668assignment1.Resources.AlertMessageResourceInterface;
 import csc668assignment1.Transaction;
 
 /**
@@ -16,8 +17,9 @@ import csc668assignment1.Transaction;
  * @author axelanconaesselmann
  */
 public class UserInterface {
-    protected TransactionsResource _transactions;
-    protected ProductsResourceInterface     _products;
+    protected TransactionsResource      _transactions;
+    protected ProductsResourceInterface _products;
+    protected AlertMessageResourceInterface _alert;
     
 
     /**
@@ -46,6 +48,10 @@ public class UserInterface {
             Payment payment = _transactions.getPayment();
             return new Transaction(name, upc, quantity, payment);
         } else return null;
+    }
+    
+    public void printAlert(String message) {
+        _alert.print(message);
     }
     
     /**
