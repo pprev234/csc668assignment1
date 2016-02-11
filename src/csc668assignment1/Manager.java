@@ -1,13 +1,13 @@
 /*
  * Author: Paul Previde
+ * Manager class: Offers services for opening and closing a store,
+ * and initializing (by appropriate requests to other classes) 
+ * the product catalog, sales log, and Post.
  * 
  */
 package csc668assignment1;
 
-/**
- *
- * @author pprevide
- */
+
 public class Manager {
     
     private static int idNumber = 1;
