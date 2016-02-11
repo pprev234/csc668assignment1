@@ -22,7 +22,7 @@ public class ConsoleUserInterface extends UserInterface {
             _transactions = new FileTransactionsResource(transactionsFileName);
             _products     = new FileProductsResource(productsFileName);
         } catch (IOException ex) {
-            this.printAlert("Could not initialize resources");
+            this.printAlertMessage("Could not initialize resources");
         }
     }
 }
