@@ -18,7 +18,7 @@ public class Invoice {
     /**
      * A linked list of SalesLineItem objects, each with a upc,quantity pair.
      */
-    private LinkedList salesLineItem;
+    private LinkedList<SalesLineItem> salesLineItem;
     //private int quantity;
     private String paymentType;
     private double subtotal;
@@ -29,12 +29,15 @@ public class Invoice {
         
     }
     
-    /*      ACCESSORS             */
+/*      ACCESSORS             */
     public String getCustomerName(){
         return customerName;
     }
-    public Timestamp getTimeStamp(){
+    public Timestamp getTimestamp(){
         return dateTime;
+    }
+    public LinkedList getProductList(){
+        return this.salesLineItem;
     }
     /*public String getUpc(){
         return upc;
@@ -55,19 +58,22 @@ public class Invoice {
         return amountTendered;
     }
     
-    /* MUTATORS                      */
+/* MUTATORS                      */
     public void setCustomerName(String name){
         this.customerName = name;
     }
     /*public void setUpc(String upc){
         this.upc = upc;
     }*/
-    public void setTimeStamp(Timestamp ts){
+    public void setTimestamp(Timestamp ts){
         this.dateTime=ts;
     }
     /*public void setQuantity(int quantity){
         this.quantity=quantity;
     }*/
+    public void setProductList(LinkedList<SalesLineItem> a){
+        this.salesLineItem=a;
+    }
     public void setPaymentType(String name){
         customerName = name;
     }
