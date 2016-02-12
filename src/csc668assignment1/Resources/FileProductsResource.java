@@ -8,6 +8,7 @@ package csc668assignment1.Resources;
 import csc668assignment1.Product;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -22,12 +23,14 @@ public class FileProductsResource implements ProductsResourceInterface {
     private float _currentPrice;
     private BufferedReader _fileHandler;
 
-    public FileProductsResource (String fileName) throws IOException {
+    public FileProductsResource (String fileName) throws ResourceException {
         Path path = FileSystems.getDefault().getPath(fileName);
         try {
-            _fileHandler = Files.newBufferedReader(path, java.nio.charset.StandardCharsets.UTF_8);
-        } catch(IOException e){
-            System.out.print("The file " + fileName + " could not be opened");
+            _fileHandler = Files.newBufferedReader(path, StandardCharsets.UTF_8);
+        } catch (IOException ex) {
+            ResourceException resouceException = new ResourceException();
+            resouceException.setMessage("File '" + path.toAbsolutePath().toString() + "' not found.");
+            throw resouceException;
         }
     }
     

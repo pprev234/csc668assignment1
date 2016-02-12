@@ -19,7 +19,7 @@ import csc668assignment1.Transaction;
 public class UserInterface {
     protected TransactionsResource      _transactions;
     protected ProductsResourceInterface _products;
-    protected MessageResourceInterface _messages;
+    protected MessageResourceInterface  _messages;
     
 
     /**
@@ -27,7 +27,7 @@ public class UserInterface {
      * @return Product
      */
     public Product readNextProduct() {
-        if (!_products.hasNext()) return null;
+        if (_products == null || !_products.hasNext()) return null;
         else {
             String upc         = _products.getUPC();
             String description = _products.getDescription();
@@ -41,13 +41,14 @@ public class UserInterface {
      * @return 
      */
     public Transaction readNextTransaction() {
-        if (_transactions.hasNext()) {
+        if (_transactions != null && !_transactions.hasNext()) return null;
+        else {
             String name     = _transactions.getName();
             String upc      = _transactions.getUPC();
             int    quantity = _transactions.getQuantity();
             Payment payment = _transactions.getPayment();
             return new Transaction(name, upc, quantity, payment);
-        } else return null;
+        }
     }
     
     public void printAlertMessage(String message) {

@@ -22,12 +22,14 @@ import java.nio.file.Path;
 public class FileTransactionsResource extends TransactionsResource {
     protected BufferedReader _fileHandler;
     
-    public FileTransactionsResource (String fileName) throws IOException {
+    public FileTransactionsResource (String fileName) throws ResourceException {
         Path path = FileSystems.getDefault().getPath(fileName);
         try {
             _fileHandler = Files.newBufferedReader(path, StandardCharsets.UTF_8);
-        } catch(IOException e){
-            System.out.print("The file " + fileName + " could not be opened");
+        } catch (IOException ex) {
+            ResourceException resouceException = new ResourceException();
+            resouceException.setMessage("File '" + path.toAbsolutePath().toString() + "' not found.");
+            throw resouceException;
         }
     }
     
@@ -42,7 +44,12 @@ public class FileTransactionsResource extends TransactionsResource {
             _currentName = line;
             line = _fileHandler.readLine();
             _currentUpc      = line.substring(0,4);
-            _currentQuantity = Integer.parseInt(line.substring(9,10));
+            if (line != null && line.length() > 4) {
+                _currentQuantity = Integer.parseInt(line.substring(9,10));
+            } else {
+                _currentQuantity = 1;
+            }
+            
             line = _fileHandler.readLine();
             if (line != null) {
                 if (line.substring(1,5).equals("CASH")) {
@@ -54,6 +61,8 @@ public class FileTransactionsResource extends TransactionsResource {
             line = _fileHandler.readLine(); // read blank line
             return true;
         } catch (IOException ex) {
+            return false;
+        } catch (NullPointerException ex) {
             return false;
         }
     }
