@@ -38,7 +38,7 @@ public class TransactionReader {
      * this.transItems_String = new String[2];
      * transItems_String[0] = "1001 2";
      * transItems_String[1] = "1002 1";
-     * this.payment = "credit card";
+     * this.payment = "CASH/CHECK $10000";
      */
     public Transaction getNextTransaction() throws IOException{
         //reset totalTransItems for this new transaction
