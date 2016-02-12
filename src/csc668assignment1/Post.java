@@ -20,6 +20,9 @@ public class Post {
         while(transactionReader.hasMoreTransactions()){
             this.currentTrans = transactionReader.getNextTransaction();
             //this.currentTransItems = this.currentTrans.getTransItems();
+            System.out.println("printing transactoin items");
+            this.currentTrans.printTransItems();
+            System.out.println("");
             this.currentInvoice = new Invoice(this.currentTrans);
             setInvoice();
             currentInvoice.print();
@@ -32,6 +35,7 @@ public class Post {
     public static void main(String[] args) throws FileNotFoundException, IOException{
         Post p = new Post("Transactions.txt");
         p.execute();
+        
         
     }
     
