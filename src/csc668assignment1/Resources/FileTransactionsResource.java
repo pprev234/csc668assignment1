@@ -6,6 +6,7 @@
 package csc668assignment1.Resources;
 
 import csc668assignment1.Payments.CashPayment;
+import csc668assignment1.Payments.CheckPayment;
 import csc668assignment1.Payments.CreditPayment;
 import csc668assignment1.Payments.Payment;
 import csc668assignment1.Transaction;
@@ -68,7 +69,7 @@ public class FileTransactionsResource extends TransactionsResource {
         if (line.substring(0,4).equals("CASH")) {
             return new CashPayment(Float.parseFloat(line.substring(6,lineLength)));
         } else if (line.substring(0,5).equals("CHECK")) {
-            return new CashPayment(Float.parseFloat(line.substring(7,lineLength)));
+            return new CheckPayment(Float.parseFloat(line.substring(7,lineLength)));
         } else if (line.substring(0,6).equals("CREDIT")) {
             return new CreditPayment(line.substring(7,11));
         } else return null;

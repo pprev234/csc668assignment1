@@ -15,6 +15,6 @@ public class CreditPayment extends Payment {
     }
     @Override
     public String toString() {
-        return "<" + _type + " " + _cardNbr + ">";
+        return _type + " " + _cardNbr;
     }
 }

@@ -9,11 +9,11 @@ package csc668assignment1.Payments;
  */
 public class CashPayment extends Payment {
     public CashPayment(float ammount) {
-        _type = "CASH/CHECK";
+        _type = "CASH";
         setAmmount(ammount);
     }
     @Override
     public String toString() {
-        return "<" + _type + " " + this.getAmmount() + ">";
+        return _type + " " + this.getAmmount();
     }
 }
