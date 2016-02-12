@@ -1,34 +1,39 @@
 /*
  * Only a stub for now
  */
-package csc668assignment1.Payment;
+package csc668assignment1.payment;
+
+import csc668assignment1.Payment;
 
 /**
  *
  * @author Susanne
  */
 public class CashPayment extends Payment {
-    private float _change;
+    private double _change;
     
-    public CashPayment(float ammount) {
+    public CashPayment() {
+        _type = "CASH";
+        _change = 0.0;
+    }
+    
+    public CashPayment(double amount){
         _type   = "CASH";
         _change = 0;
-        setAmmount(ammount);
+        _amountDue = amount;
     }
+    
     @Override
     public String toString() {
-        return _type + " " + this.getAmmount();
+        return _type + " " + Double.toString(getAmountDue());
     }
 
     public void makePayment(double amountPaid){
-        _ammount -= amountPaid;
-        // with cash there is always the issue of change? Or being short changed?
-        
-        _change = -_ammount;
+        _amountDue -= amountPaid;
+        if( _amountDue < 0) 
+            _change = (-1) * _amountDue;
     }
-
     
-    //Might need this method?
     public double getChange() {
         return _change;
     }
