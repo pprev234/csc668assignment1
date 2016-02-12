@@ -7,6 +7,7 @@ package csc668assignment1.Resources;
 
 import csc668assignment1.Payments.CashPayment;
 import csc668assignment1.Payments.CreditPayment;
+import csc668assignment1.Payments.Payment;
 import csc668assignment1.Transaction;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -40,23 +41,18 @@ public class FileTransactionsResource extends TransactionsResource {
         _currentPayment  = null;
         _currentName     = null;
         try {
-            String line = _fileHandler.readLine();
+            String line  = _fileHandler.readLine();
             _currentName = line;
-            line = _fileHandler.readLine();
-            _currentUpc      = line.substring(0,4);
-            if (line != null && line.length() > 4) {
-                _currentQuantity = Integer.parseInt(line.substring(9,10));
+            line         = _fileHandler.readLine();
+            _currentUpc  = line.substring(0,4);
+            if (line.length() > 9) {
+                _currentQuantity = Integer.parseInt(line.substring(9,line.length()));
             } else {
                 _currentQuantity = 1;
             }
-            
             line = _fileHandler.readLine();
             if (line != null) {
-                if (line.substring(1,5).equals("CASH")) {
-                    _currentPayment = new CashPayment(Float.parseFloat(line.substring(13,20)));
-                } else if (line.substring(1,5).equals("CRED")) {
-                    _currentPayment = new CreditPayment(line.substring(8,12));
-                } else _currentPayment = null;
+                _currentPayment = _readCurrentPayment(line);
             } else return false;
             line = _fileHandler.readLine(); // read blank line
             return true;
@@ -65,6 +61,17 @@ public class FileTransactionsResource extends TransactionsResource {
         } catch (NullPointerException ex) {
             return false;
         }
+    }
+    
+    private Payment _readCurrentPayment(String line) {
+        int lineLength = line.length();
+        if (line.substring(0,4).equals("CASH")) {
+            return new CashPayment(Float.parseFloat(line.substring(6,lineLength)));
+        } else if (line.substring(0,5).equals("CHECK")) {
+            return new CashPayment(Float.parseFloat(line.substring(7,lineLength)));
+        } else if (line.substring(0,6).equals("CREDIT")) {
+            return new CreditPayment(line.substring(7,11));
+        } else return null;
     }
 
     @Override
