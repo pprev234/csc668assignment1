@@ -12,7 +12,7 @@ public class Post {
     private TransactionReader transactionReader;
     //private TransactionItem[] currentTransItems;
     private Transaction currentTrans;
-    private Invoice2 currentInvoice;
+    private Invoice currentInvoice;
     public Post(String transactionFile) throws FileNotFoundException{
         this.transactionReader = new TransactionReader(transactionFile);     
     }
@@ -20,13 +20,13 @@ public class Post {
         while(transactionReader.hasMoreTransactions()){
             this.currentTrans = transactionReader.getNextTransaction();
             //this.currentTransItems = this.currentTrans.getTransItems();
-            this.currentInvoice = new Invoice2(this.currentTrans);
+            this.currentInvoice = new Invoice(this.currentTrans);
             setInvoice();
             currentInvoice.print();
         }
     }
     public void setInvoice(){
-        this.currentInvoice = new Invoice2(currentTrans);
+        this.currentInvoice = new Invoice(currentTrans);
     }
     //for testing 
     public static void main(String[] args) throws FileNotFoundException, IOException{
