@@ -15,6 +15,6 @@ public interface ProductsResourceInterface {
     public boolean hasNext();
     public String getUPC();
     public String getDescription();
-    public float getPrice();
-    public void printProduct(ProductSpec product);
+    public float getUnitPrice();
+    public void printProductSpec(ProductSpec product);
 }

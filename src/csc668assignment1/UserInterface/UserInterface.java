@@ -31,7 +31,7 @@ public class UserInterface {
         else {
             String upc         = _products.getUPC();
             String description = _products.getDescription();
-            float  price       = _products.getPrice();
+            float  price       = _products.getUnitPrice();
             return new ProductSpec(upc, description, price);
         }
     }
@@ -60,7 +60,7 @@ public class UserInterface {
      * @param product 
      */
     public void printProduct(ProductSpec product) {
-        _products.printProduct(product);
+        _products.printProductSpec(product);
     }
     
     /**

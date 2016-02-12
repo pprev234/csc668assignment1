@@ -29,12 +29,12 @@ public class GuiProductsResource implements ProductsResourceInterface {
     }
 
     @Override
-    public float getPrice() {
+    public float getUnitPrice() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void printProduct(ProductSpec product) {
+    public void printProductSpec(ProductSpec product) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

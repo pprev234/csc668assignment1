@@ -43,9 +43,7 @@ public class FileProductsResource implements ProductsResourceInterface {
         _currentPrice = 0;
         try {
             line = _fileHandler.readLine();
-//            System.out.print(_fileHandler);
             if (line != null) {
-//                System.out.print(line);
                 _currentUpc   = line.substring(0,4);
                 _currentText  = line.substring(9,29);
                 _currentPrice = Float.parseFloat(line.substring(34,41));
@@ -68,13 +66,13 @@ public class FileProductsResource implements ProductsResourceInterface {
     }
 
     @Override
-    public float getPrice() {
+    public float getUnitPrice() {
         return _currentPrice;
     }
 
     @Override
-    public void printProduct(ProductSpec product) {
-        System.out.print("\n" + product.getUpc() + "\n");
+    public void printProductSpec(ProductSpec product) {
+        System.out.printf("%s     %s     %f\n", product.getUpc(), product.getDescription(), product.getUnitPrice());
     }
     
 }
