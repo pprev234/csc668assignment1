@@ -5,7 +5,7 @@
  */
 package csc668assignment1.Resources;
 
-import csc668assignment1.Product;
+import csc668assignment1.ProductSpec;
 
 /**
  *
@@ -16,5 +16,5 @@ public interface ProductsResourceInterface {
     public String getUPC();
     public String getDescription();
     public float getPrice();
-    public void printProduct(Product product);
+    public void printProduct(ProductSpec product);
 }

@@ -5,7 +5,7 @@
  */
 package csc668assignment1.Resources;
 
-import csc668assignment1.Product;
+import csc668assignment1.ProductSpec;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -73,8 +73,8 @@ public class FileProductsResource implements ProductsResourceInterface {
     }
 
     @Override
-    public void printProduct(Product product) {
-        System.out.print("\n" + product.getUPC() + "\n");
+    public void printProduct(ProductSpec product) {
+        System.out.print("\n" + product.getUpc() + "\n");
     }
     
 }

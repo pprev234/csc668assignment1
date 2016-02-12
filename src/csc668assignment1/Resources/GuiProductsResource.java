@@ -5,7 +5,7 @@
  */
 package csc668assignment1.Resources;
 
-import csc668assignment1.Product;
+import csc668assignment1.ProductSpec;
 
 /**
  *
@@ -34,7 +34,7 @@ public class GuiProductsResource implements ProductsResourceInterface {
     }
 
     @Override
-    public void printProduct(Product product) {
+    public void printProduct(ProductSpec product) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

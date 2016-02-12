@@ -6,7 +6,7 @@ package csc668assignment1.UserInterface;
 
 import csc668assignment1.Invoice;
 import csc668assignment1.Payments.Payment;
-import csc668assignment1.Product;
+import csc668assignment1.ProductSpec;
 import csc668assignment1.Resources.ProductsResourceInterface;
 import csc668assignment1.Resources.TransactionsResource;
 import csc668assignment1.Resources.MessageResourceInterface;
@@ -26,13 +26,13 @@ public class UserInterface {
      * Reads the next product and returns a Product instance
      * @return Product
      */
-    public Product readNextProduct() {
+    public ProductSpec readNextProduct() {
         if (_products == null || !_products.hasNext()) return null;
         else {
             String upc         = _products.getUPC();
             String description = _products.getDescription();
             float  price       = _products.getPrice();
-            return new Product(upc, description, price);
+            return new ProductSpec(upc, description, price);
         }
     }
     
@@ -59,7 +59,7 @@ public class UserInterface {
      * Prints a Product instance
      * @param product 
      */
-    public void printProduct(Product product) {
+    public void printProduct(ProductSpec product) {
         _products.printProduct(product);
     }
     
