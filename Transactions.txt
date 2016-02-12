@@ -1,0 +1,14 @@
+Taylor
+1001     19
+1002     2
+CASH/CHECK $1000
+
+Chunck
+1001     
+1002     2
+CREDIT 1234123412341234
+
+Blake
+1001     
+1002     2
+CASH/CHECK $1000.88
