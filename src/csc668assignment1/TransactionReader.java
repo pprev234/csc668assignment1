@@ -39,7 +39,7 @@ public class TransactionReader {
         this.transItems_String = new String[100];
         System.out.println(this.in.readLine());
         this.line = this.in.readLine();
-        while(!this.line.startsWith("C")){
+        while(!this.line.startsWith("C")){//reports error here
             this.transItems_String[this.totalTransItems++] = this.line;
             this.line = this.in.readLine();
         }
