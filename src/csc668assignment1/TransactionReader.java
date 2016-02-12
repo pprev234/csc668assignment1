@@ -32,32 +32,43 @@ public class TransactionReader {
         }
         return false;
     }
-    //need to fix
+    /*
+     * e.g 
+     * this.customerName = "Jie";
+     * this.transItems_String = new String[2];
+     * transItems_String[0] = "1001 2";
+     * transItems_String[1] = "1002 1";
+     * this.payment = "credit card";
+     */
     public Transaction getNextTransaction() throws IOException{
+        //reset totalTransItems for this new transaction
         this.totalTransItems = 0;
         this.transItems_String = new String[100];
-        System.out.println(this.in.readLine());
+        //read the first line of item
         this.line = this.in.readLine();
+        //System.out.println("nextTrans: " + this.line);
         while(!this.line.startsWith("C")){//reports error here
             this.transItems_String[this.totalTransItems++] = this.line;
             this.line = this.in.readLine();
+            //System.out.println("nextTrans: " + this.line);
         }
         //comes to the payment
         this.payment = this.line;
+        for(int i = 0; i < this.totalTransItems; i++){
+            System.out.println("transItems_String[]: "+this.transItems_String[i]);
+        }
+        System.out.println("Payment: " + this.payment);
+        //skip the blank line
+        this.in.readLine();
         
-        //this.customerName = "Jie";
-        //this.transItems_String = new String[2];
-        //transItems_String[0] = "1001 2";
-        //transItems_String[1] = "1002 1";
-        //this.payment = "credit card";
-        this.transaction =  new Transaction(customerName, transItems_String, payment);
+        this.transaction =  new Transaction(customerName, transItems_String, totalTransItems, payment);
         return this.transaction;
         
     }
 
     public static void main(String[] args) throws FileNotFoundException, IOException{
         TransactionReader tr = new TransactionReader("Transactions.txt");
-        if(tr.hasMoreTransactions()){
+        while(tr.hasMoreTransactions()){
              Transaction t = tr.getNextTransaction(); 
              System.out.println("printing transactoin items");
              t.printTransItems();

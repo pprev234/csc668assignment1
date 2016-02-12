@@ -17,20 +17,22 @@ package csc668assignment1;
  *  
  */
 public class Transaction {
-    //put Customer, 
     private Customer customer;//may not needed
     private String[] transItems_string;
-    private Payment payment;
-    private int numTransItems;
+    //private Payment payment;
+    private Payment_2 payment;
+    private int totalTransItems;
     private int counter;
-    private TransactionItem[] transItems = new TransactionItem[100];//will be SalesLineItem[]
+    private TransactionItem[] transItems;
     
-    public Transaction(String customerName, String[] transItems, String payment){
+    public Transaction(String customerName, String[] transItems, int totalTransItems, String payment){
         this.customer = new Customer(customerName);//may not needed
         this.transItems_string = transItems;
-        this.payment = new Payment(payment);
-        this.numTransItems = transItems.length;
+        //this.payment = new Payment(payment);
+        this.payment = new Payment_2(payment);
+        this.totalTransItems = totalTransItems;
         this.counter = 0;
+        this.transItems = new TransactionItem[100];
         setTransItems();
     }
     //create an instance of TransItems by providing its String description
@@ -38,6 +40,7 @@ public class Transaction {
         while(hasMoreTransItems()){
             //add item to array
             this.transItems[this.counter] = getNextTransItem(this.transItems_string[this.counter]);
+            //System.out.println("this.transItems[this.counter]: "+this.transItems[this.counter]);
             counter++;
         }
     }
@@ -48,19 +51,22 @@ public class Transaction {
      */
     public TransactionItem getNextTransItem(String transItem){
         //split transItem
+        //System.out.println("transItem:" + transItem);
         String upc = transItem.substring(0, 4);
+        //System.out.println("transItem.substring(0, 4): " + upc);
         int quantity = 1;
-        if(transItem.substring(4)!=null){//quantity is more than 1
+        //System.out.println("transItem.substring(9): " + transItem.substring(9) );
+        if(!transItem.substring(9).isEmpty()){//quantity is more than 1
             quantity = Integer.parseInt(transItem.substring(9));
         }
         return new TransactionItem(upc, quantity);
         
     }
     public boolean hasMoreTransItems(){
-        return this.counter < this.numTransItems;
+        return this.counter < this.totalTransItems;
     }
     public void printTransItems(){
-        for(int i = 0; i < this.numTransItems; i++){
+        for(int i = 0; i < this.totalTransItems; i++){
             System.out.println(this.transItems[i]);
         }
     }
