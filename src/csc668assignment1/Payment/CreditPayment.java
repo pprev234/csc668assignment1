@@ -1,20 +1,35 @@
 /*
  * Only a stub for now
  */
-package csc668assignment1.Payment;
+package csc668assignment1.payment;
+
+import csc668assignment1.Payment;
 
 /**
  *
- * @author axelanconaesselmann
+ * @author axelanconaesselmann, Susanne
  */
 public class CreditPayment extends Payment {
-    private String _cardNbr;
-    public CreditPayment(String cardNbr) {
+    private int _cardNbr;
+
+    public CreditPayment(){
+        _type = "CREDIT";
+        _cardNbr = 0;
+    }
+    
+    public CreditPayment(double amountDue, int cardNbr){
         _type    = "CREDIT";
         _cardNbr = cardNbr;
+        _amountDue = amountDue;
     }
     @Override
     public String toString() {
         return _type + " " + _cardNbr;
     }
+    
+   public void makePayment(double amountPaid){
+       _amountDue -= amountPaid;
+   }
+
+    
 }

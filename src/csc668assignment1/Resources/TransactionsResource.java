@@ -5,7 +5,7 @@
  */
 package csc668assignment1.Resources;
 
-import csc668assignment1.Payment.Payment;
+import csc668assignment1.Payment;
 import csc668assignment1.Transaction;
 import java.io.IOException;
 

@@ -3,19 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package csc668assignment1.Payment;
+package csc668assignment1.payment;
+
+import csc668assignment1.Payment;
 
 /**
  *
  * @author Susanne
  */
 public class CheckPayment extends Payment {
-    public CheckPayment(float ammount) {
+    
+    public CheckPayment(double amount) {
         _type = "CHECK";
-        setAmmount(ammount);
+        _amountDue = amount;
     }
     @Override
     public String toString() {
-        return _type + " " + this.getAmmount();
+        return _type + " " + Double.toString(_amountDue);
     }
+    
+    public void makePayment(double amountPaid){
+       _amountDue -= amountPaid;
+   }
 }
