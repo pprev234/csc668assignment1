@@ -28,4 +28,12 @@ public class ConsoleUserInterface extends UserInterface {
             this.printAlertMessage("Could not initialize resources:\n\n" + ex.getMessage());
         }
     }
+    public ConsoleUserInterface(String transactionsFileName) {
+        _messages = new ConsoleMessageResource();
+        try {
+            _transactions = new FileTransactionsResource(transactionsFileName);
+        } catch (ResourceException ex) {
+            this.printAlertMessage("Could not initialize resources:\n\n" + ex.getMessage());
+        }
+    }
 }
