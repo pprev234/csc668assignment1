@@ -41,7 +41,7 @@ public class UserInterface {
      * @return 
      */
     public Transaction readNextTransaction() {
-        if (_transactions != null && !_transactions.hasNext()) return null;
+        if (_transactions == null || !_transactions.hasNext()) return null;
         else {
             String name     = _transactions.getName();
             String upc      = _transactions.getUPC();
