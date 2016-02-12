@@ -1,7 +1,4 @@
-/*
- *Description: this is a fake transactionReader to read transactionfile.txt
- *Implement the method getNextTransaction for testing purpose
- */
+
 package csc668assignment1;
 
 import java.io.BufferedReader;
@@ -11,7 +8,9 @@ import java.io.IOException;
 
 /**
  *
- * @author lenovo
+ * @author Jie Li
+ * Date: 2/11/2016
+ * Purpose: build a transactionReader to read transaciton records from a file.
  */
 public class TransactionReader {
     private BufferedReader in;
