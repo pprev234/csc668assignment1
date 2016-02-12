@@ -13,14 +13,14 @@ public class SalesLineItem {
     private int quantity;
     private ProductSpec productSpec;
     private String upc;
-    private ProductCatalog  pc = ProductCatalog.getInstance();
+    private ProductCatalog  pc;
     public SalesLineItem(){
         
     }
     public SalesLineItem(String upc, int quantity ){
         this.quantity = quantity;
         this.upc = upc;
-        this.productSpec = setProductSpec(upc);
+        this.productSpec = pc.getProductSpec(upc);
     }
     /*ACCESSORS*/
     public int getQuantity(){
