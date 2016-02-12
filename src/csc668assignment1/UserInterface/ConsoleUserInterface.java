@@ -3,6 +3,7 @@
  */
 package csc668assignment1.UserInterface;
 
+import csc668assignment1.Resources.ConsoleResource;
 import csc668assignment1.Resources.ConsoleMessageResource;
 import csc668assignment1.Resources.FileProductsResource;
 import csc668assignment1.Resources.FileTransactionsResource;
@@ -20,7 +21,7 @@ public class ConsoleUserInterface extends UserInterface {
      * @param productsFileName 
      */
     public ConsoleUserInterface(String transactionsFileName, String productsFileName) {
-        _messages = new ConsoleMessageResource();
+        _init();
         try {
             _transactions = new FileTransactionsResource(transactionsFileName);
             _products     = new FileProductsResource(productsFileName);
@@ -29,11 +30,15 @@ public class ConsoleUserInterface extends UserInterface {
         }
     }
     public ConsoleUserInterface(String transactionsFileName) {
-        _messages = new ConsoleMessageResource();
+        _init();
         try {
             _transactions = new FileTransactionsResource(transactionsFileName);
         } catch (ResourceException ex) {
             this.printAlertMessage("Could not initialize resources:\n\n" + ex.getMessage());
         }
+    }
+    private void _init() {
+        _messages   = new ConsoleMessageResource();
+        _generalOut = new ConsoleResource();
     }
 }

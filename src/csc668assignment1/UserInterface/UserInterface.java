@@ -1,6 +1,6 @@
 /*
  * Classes implementing the UserInterface are responsible for reading and outputting 
- * Transactions, Products and Invoices
+ * Transactions and Products
  */
 package csc668assignment1.UserInterface;
 
@@ -10,6 +10,7 @@ import csc668assignment1.ProductSpec;
 import csc668assignment1.Resources.ProductsResourceInterface;
 import csc668assignment1.Resources.TransactionsResource;
 import csc668assignment1.Resources.MessageResourceInterface;
+import csc668assignment1.Resources.ResourceInterface;
 import csc668assignment1.Transaction;
 
 /**
@@ -20,6 +21,7 @@ public class UserInterface {
     protected TransactionsResource      _transactions;
     protected ProductsResourceInterface _products;
     protected MessageResourceInterface  _messages;
+    protected ResourceInterface         _generalOut;
     
 
     /**
@@ -75,11 +77,7 @@ public class UserInterface {
         _messages.printMessage(message);
     }
     
-    /**
-     * Prints an Invoice instance
-     * @param invoice 
-     */
-    public void printInvoice(Invoice invoice) {
-        
+    public void printToGeneralOut(String str) {
+        _generalOut.printString(str);
     }
 }
