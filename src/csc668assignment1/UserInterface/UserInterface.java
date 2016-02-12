@@ -71,6 +71,10 @@ public class UserInterface {
         _transactions.printTransaction(transaction);
     }
     
+    public void printString(String message) {
+        _messages.printMessage(message);
+    }
+    
     /**
      * Prints an Invoice instance
      * @param invoice 

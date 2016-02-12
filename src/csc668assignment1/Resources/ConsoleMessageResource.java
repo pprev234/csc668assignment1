@@ -13,4 +13,9 @@ public class ConsoleMessageResource implements MessageResourceInterface {
         System.out.println(alertMessage);
         System.out.println();
     }
+    public void printMessage(String message) {
+        System.out.println("----- Message -----");
+        System.out.println(message);
+        System.out.println();
+    }
 }

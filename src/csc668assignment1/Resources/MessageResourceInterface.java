@@ -11,4 +11,5 @@ package csc668assignment1.Resources;
  */
 public interface MessageResourceInterface {
     public void printAlertMessage(String alertMessage);
+    public void printMessage(String message);
 }
