@@ -25,10 +25,25 @@ public class Invoice {
     private String cardNum;
     private double amountTendered;
     
-    public Invoice(){
-        
+    //add by Jie
+    private Transaction t;
+    public Invoice(Transaction t){
+        this.t = t;
     }
-    
+    /*
+     * invoice needs to be printed in the following format
+     * STORE NAME
+     * Customer Name Date Time
+     * Item: description quantity @ unitPrice subtotal
+     * ----------
+     * Total $xxxx.xx
+     * Amount Tendered: xxxx.xx OR Paid by check OR Creadit Card ddddd
+     * Amount Returned: xxxx.xx
+     */
+    public void print(){
+        //need to be implemented
+       
+    }
 /*      ACCESSORS             */
     public String getCustomerName(){
         return customerName;
