@@ -1,5 +1,7 @@
 
 package csc668assignment1;
+import csc668assignment1.UserInterface.*;
+
 /**
   *
   * Author: Paul Previde
@@ -14,12 +16,13 @@ public class Store {
     private static Store store = null; // store is a singleton
     private boolean isOpen;
     private Manager manager;
-    private Post post;
+    private static Post post;
     private ProductCatalog catalog;
     private SalesLog salesLog;
 
     // FILENAME holds the text file that contains products
-    private final static String FILENAME = "products.txt";
+    private final static String PRODUCTSFILE = "products.txt";
+    private final static String TRANSACTIONSFILE = "transaction.txt";
 
     // There is no public constructor and no default, no-arg constructor
     protected Store () { }
@@ -40,7 +43,13 @@ public class Store {
     }
 
     public void initializePost() {
-        this.post = new Post();
+        try {
+        this.post = new Post(TRANSACTIONSFILE);
+        } catch (Exception e) {
+            UserInterface ui = new UserInterface();
+            ui.printString("Transactions file not found, program will exit.");
+            System.exit(1);
+        }
     }
 
     public void initializeSalesLog() {
@@ -105,11 +114,16 @@ public class Store {
         Manager manager = new Manager();
         manager.openStore(store);
         manager.initializePost(store);
-        store.setCatalog(manager.initializeProductCatalog(FILENAME));
+        store.setCatalog(manager.initializeProductCatalog(PRODUCTSFILE));
         manager.initializeSalesLog(store);
         // Post instance is requested to carry out the transactions
+        try {
         post.execute();
-           
+        } catch (Exception e) {
+            UserInterface ui = new UserInterface();
+            ui.printString("Post failed to process the transactions. Program will exit.");
+            System.exit(1);
+        }   
         // After customers have been served, Manager closes the store
         manager.closeStore(store);
     } // end main method
