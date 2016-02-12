@@ -23,32 +23,31 @@ public class SalesLog {
      * every Invoice is appended to the LinkedList.
      */
     public void viewAllInvoices(){
-        int i,j;
+        int i,j=0;
         UserInterface ui = new UserInterface();
         Invoice current;
         SalesLineItem currentItem;
-        LinkedList<SalesLineItem> productList;
+        SalesLineItem[] productList;
+        
         if(invoiceList.isEmpty()){
             //print("No Records in Sales Log.");
             return;
         }else{
             for(i=invoiceList.size(); i>0;i--){
                 current = invoiceList.get(i);
-                
-                //printing salesLineItems for the current invoice
-                for(j=0; j<current.getProductList().size();j++){
-                    
-                    productList=current.getProductList();
-                    currentItem = productList.get(j);
+                productList=current.getProductList();
+                currentItem = productList[j];
+                //printing salesLineItems for the current invoice, 
+                //assuming at least one item
+                for(j=0; currentItem!=null;j++){
                     ui.printToGeneralOut(null);
                     ui.printToGeneralOut("<"+currentItem.getProductSpec().getDescription()+" "
                         +currentItem.getQuantity()+" @ " 
                         +currentItem.getProductSpec().getUnitPrice()+" "
                         +currentItem.getSubtotal()+">");
                     ui.printToGeneralOut("\n");
-                    
-                    
-                    
+                    productList=current.getProductList();
+                    currentItem = productList[j];
                     
                 }
                 //after all items printed, print subtotal and payment.
@@ -78,11 +77,13 @@ public class SalesLog {
      * @param name the name of the person's invoices
      */
     public void viewInvoice(String name){
-        int i,j;
+        int i;
+        int j=0;
         Invoice current;
         UserInterface ui = new UserInterface();
         SalesLineItem currentItem;
-        LinkedList<SalesLineItem> productList;
+        SalesLineItem[] productList;
+        
         if(invoiceList.isEmpty()){
             //print("No Records in Sales Log.")
             return;
@@ -92,18 +93,19 @@ public class SalesLog {
             current = invoiceList.get(i);
             if((current.getCustomerName().equals(name))){
                 //printing salesLineItems for the current invoice
-                for(j=0; j<current.getProductList().size();j++){
-                   
-                    productList=current.getProductList();
-                    currentItem = productList.get(j);
+                productList=current.getProductList();
+                currentItem = productList[j];
+                //printing salesLineItems for the current invoice, 
+                //assuming at least one item
+                for(j=0; currentItem!=null;j++){
+                    ui.printToGeneralOut(null);
                     ui.printToGeneralOut("<"+currentItem.getProductSpec().getDescription()+" "
-                            +currentItem.getQuantity()+" @ " 
-                            +currentItem.getProductSpec().getUnitPrice()+" "
-                            +currentItem.getSubtotal()+">");
+                        +currentItem.getQuantity()+" @ " 
+                        +currentItem.getProductSpec().getUnitPrice()+" "
+                        +currentItem.getSubtotal()+">");
                     ui.printToGeneralOut("\n");
-                    
-                    
-                    
+                    productList=current.getProductList();
+                    currentItem = productList[j];
                     
                 }
                 //after all items printed, print subtotal and payment.
