@@ -11,7 +11,7 @@ import csc668assignment1.Resources.ProductsResourceInterface;
 import csc668assignment1.Resources.TransactionsResource;
 import csc668assignment1.Resources.MessageResourceInterface;
 import csc668assignment1.Resources.ResourceInterface;
-import csc668assignment1.Transaction;
+import csc668assignment1.Transaction_AxelVersion;
 
 /**
  *
@@ -39,17 +39,17 @@ public class UserInterface {
     }
     
     /**
-     * Reads the next transaction and returns a Transaction instance
+     * Reads the next transaction and returns a Transaction_AxelVersion instance
      * @return 
      */
-    public Transaction readNextTransaction() {
+    public Transaction_AxelVersion readNextTransaction() {
         if (_transactions == null || !_transactions.hasNext()) return null;
         else {
             String name     = _transactions.getName();
             String upc      = _transactions.getUPC();
             int    quantity = _transactions.getQuantity();
             Payment payment = _transactions.getPayment();
-            return new Transaction(name, upc, quantity, payment);
+            return new Transaction_AxelVersion(name, upc, quantity, payment);
         }
     }
     
@@ -66,10 +66,10 @@ public class UserInterface {
     }
     
     /**
-     * Prints a Transaction Instance
+     * Prints a Transaction_AxelVersion Instance
      * @param transaction 
      */
-    public void printTransaction(Transaction transaction) {
+    public void printTransaction(Transaction_AxelVersion transaction) {
         _transactions.printTransaction(transaction);
     }
     

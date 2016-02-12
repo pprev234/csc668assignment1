@@ -6,7 +6,7 @@
 package csc668assignment1.Resources;
 
 import csc668assignment1.Payment;
-import csc668assignment1.Transaction;
+import csc668assignment1.Transaction_AxelVersion;
 import java.io.IOException;
 
 /**
@@ -16,7 +16,7 @@ import java.io.IOException;
 public abstract class TransactionsResource {
 
     abstract public boolean hasNext();
-    abstract public void printTransaction(Transaction transaction);
+    abstract public void printTransaction(Transaction_AxelVersion transaction);
     
     protected String  _currentUpc;
     protected int     _currentQuantity;

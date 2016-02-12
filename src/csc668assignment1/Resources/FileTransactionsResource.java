@@ -9,7 +9,7 @@ import csc668assignment1.payment.CashPayment;
 import csc668assignment1.payment.CheckPayment;
 import csc668assignment1.payment.CreditPayment;
 import csc668assignment1.Payment;
-import csc668assignment1.Transaction;
+import csc668assignment1.Transaction_AxelVersion;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -76,7 +76,7 @@ public class FileTransactionsResource extends TransactionsResource {
     }
 
     @Override
-    public void printTransaction(Transaction transaction) {
+    public void printTransaction(Transaction_AxelVersion transaction) {
         System.out.printf("%s\n%s     %d\n%s\n\n", 
             transaction.getName(), 
             transaction.getUpc(), 

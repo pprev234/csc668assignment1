@@ -5,7 +5,7 @@
  */
 package csc668assignment1.Resources;
 
-import csc668assignment1.Transaction;
+import csc668assignment1.Transaction_AxelVersion;
 
 /**
  *
@@ -18,7 +18,7 @@ public class GuiTransactionsResource extends TransactionsResource {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     @Override
-    public void printTransaction(Transaction transaction) {
+    public void printTransaction(Transaction_AxelVersion transaction) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

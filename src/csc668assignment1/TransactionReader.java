@@ -33,7 +33,6 @@ public class TransactionReader {
         return false;
     }
     //need to fix
-    //Right now I just make one instance of transaction for testing
     public Transaction getNextTransaction() throws IOException{
         this.totalTransItems = 0;
         this.transItems_String = new String[100];
