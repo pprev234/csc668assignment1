@@ -85,7 +85,7 @@ public class Invoice {
      */
     public void print(){
         //need to be implemented
-        ui.println("Customer Name" + this.customerName);
+        ui.println(this.customerName);
         DecimalFormat numberFormat = new DecimalFormat("#.00");
         
         ui.println(this.storeName);
