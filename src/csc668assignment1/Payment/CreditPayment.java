@@ -41,6 +41,9 @@ public class CreditPayment extends Payment {
    public void makePayment(double amountPaid){
        _amountDue -= amountPaid;
    }
+   public int getCardNum(){
+       return this._cardNbr;
+   }
 
     
 }
