@@ -4,8 +4,10 @@
  * and open the template in the editor.
  */
 package csc668assignment1;
+import csc668assignment1.payment.CashPayment;
+import csc668assignment1.payment.CheckPayment;
+import csc668assignment1.payment.CreditPayment;
 import java.sql.Timestamp;
-import java.util.LinkedList;
 /**
  * This represents an Invoice from the purchase of an item(s)
  * 
@@ -21,10 +23,11 @@ public class Invoice {
      */
     private SalesLineItem[] salesLineItem;
     private int totalTransItem;
+    //variables for Payment
     private String paymentType;
     private double TenderedAmount;
     private double ReturedAmount;
-    private String cardNum;
+    private int cardNum;
     private double total;
     
     public Invoice(Transaction t){
@@ -34,20 +37,35 @@ public class Invoice {
         this.customerName = t.getCustomer().getName();
         this.salesLineItem = t.getTransItems();
         this.totalTransItem = t.getTotalTransItems();
-        this.paymentType = t.getPayment().getPaymentType();
-        this.TenderedAmount = t.getPayment().getTenderedAmount();
-        this.cardNum = t.getPayment().getCardNumber();//null if paid by cash or check   
         this.total = 0.0;//initialize the total price
-        calculate();
+        getPayment(t.getPayment());
+        calculateTotal(); 
     }
-    public void calculate(){
+    public void calculateTotal(){
         //Accumulate subtotal from each SalesLineItem to get total
         for(int i = 0; i < this.totalTransItem; i++){
             this.total += this.salesLineItem[i].getSubtotal();
         }
+        this.total=Math.floor(this.total * 100) / 100;
         //get the amount for return
         this.ReturedAmount = this.TenderedAmount - this.total;
         
+    }
+    public void getPayment(Payment payment){
+        
+        if(payment instanceof CheckPayment){
+            CheckPayment check = (CheckPayment)payment;
+            this.paymentType = check.getType();
+            //this.TenderedAmount = check.getAmountDue();
+        }else if(payment instanceof CreditPayment){
+            CreditPayment credit = (CreditPayment)payment;
+            this.paymentType = credit.getType();
+            this.cardNum = credit.getCardNum();
+        }else{
+            CashPayment cash = (CashPayment)payment;
+            this.paymentType = cash.getType();
+            this.TenderedAmount = cash.getAmountDue();
+        }
     }
     /*
      * invoice needs to be printed in the following format
@@ -61,7 +79,9 @@ public class Invoice {
      */
     public void print(){
         //need to be implemented
-        System.out.println(this.storeName);
+        System.out.println("Store Name" + this.storeName);
+        System.out.println();
+        System.out.println("Customer Name" + this.customerName);
         for(int i = 0; i < this.totalTransItem; i++){
             String s = "";
             s += this.salesLineItem[i].getProductSpec().getDescription() + "\t";
@@ -73,8 +93,15 @@ public class Invoice {
         }
         System.out.println("-----------------------------------------");
         System.out.println("Total $" + this.total);
-        System.out.println("Amount Tendered: " + this.TenderedAmount);
-        System.out.println("Amount Returned: " + this.ReturedAmount);
+        if(this.paymentType.equals("CHECK")){
+            System.out.println("Paid by check");
+        }else if(this.paymentType.equals("CREDIT")){
+            System.out.println("Paid by Credit Card" + this.cardNum);
+        }else{//cash
+            System.out.println("Amount Tendered: " + this.TenderedAmount);
+            System.out.println("Amount Returned: " + this.ReturedAmount);
+        }
+
        
     }
 /*      ACCESSORS             */
@@ -97,7 +124,7 @@ public class Invoice {
     public double getTotal(){
         return this.total;
     }
-    public String getCardNum(){
+    public int getCardNum(){
         return cardNum;
     }
     public double getAmountTendered(){
@@ -123,7 +150,7 @@ public class Invoice {
     public void setPaymentType(String name){
         customerName = name;
     }
-    public void setCardNum(String cardNum){
+    public void setCardNum(int cardNum){
         this.cardNum = cardNum;
     }
     public void setAmountTendered(double amtTendered){
