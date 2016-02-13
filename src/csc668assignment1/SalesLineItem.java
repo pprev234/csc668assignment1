@@ -40,7 +40,9 @@ public class SalesLineItem {
             return null;
     }
     public double getSubtotal(){
-        return (this.quantity * this.productSpec.getUnitPrice());
+        double subtotal=this.quantity * this.productSpec.getUnitPrice();
+        subtotal=Math.floor(subtotal * 100) / 100;
+        return subtotal;
     }
     /*MUTATORS*/
     public void setQuantity(int q){
