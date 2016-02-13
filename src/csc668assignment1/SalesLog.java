@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 package csc668assignment1;
-import java.io.*;
 import java.util.LinkedList;
+import csc668assignment1.UserInterface.*;
 //import java.sql.Timestamp;
 import csc668assignment1.UserInterface.UserInterface;
 //import csc668assignment1.Resources.*;
@@ -18,6 +18,8 @@ import csc668assignment1.UserInterface.UserInterface;
 public class SalesLog {
     //final static String TRANSACTION_FILE_NAME = "transaction.txt"; 
     private LinkedList<Invoice> invoiceList;
+    private UserInterface ui;
+    SalesLog(){};
     /**
      * shows all invoices in chronological order, earliest to latest, assuming 
      * every Invoice is appended to the LinkedList.
@@ -30,13 +32,14 @@ public class SalesLog {
         SalesLineItem[] productList;
         
         if(invoiceList.isEmpty()){
-            //print("No Records in Sales Log.");
+            ui.printToGeneralOut("No Records in Sales Log.");
             return;
         }else{
-            for(i=invoiceList.size(); i>0;i--){
+            for(i=invoiceList.size()-1; i>=0;i--){
                 current = invoiceList.get(i);
                 productList=current.getProductList();
                 currentItem = productList[j];
+                ui.printToGeneralOut("name: "+current.getCustomerName()+"\n");
                 //printing salesLineItems for the current invoice, 
                 //assuming at least one item
                 for(j=0; currentItem!=null;j++){
@@ -65,10 +68,10 @@ public class SalesLog {
                 }else if(current.getPaymentType().equals("credit")){
                     ui.printToGeneralOut("Paid by Credit Card number: "+current.getCardNum());
                     ui.printToGeneralOut("\n");
-            }
+                }
                 
+            }
         }
-    }
     }
     
     /**
@@ -85,11 +88,11 @@ public class SalesLog {
         SalesLineItem[] productList;
         
         if(invoiceList.isEmpty()){
-            //print("No Records in Sales Log.")
+            ui.printToGeneralOut("No Records in Sales Log.");
             return;
         }
         
-        for(i=invoiceList.size(); i>0;i--){
+        for(i=invoiceList.size()-1; i>=0;i--){
             current = invoiceList.get(i);
             if((current.getCustomerName().equals(name))){
                 //printing salesLineItems for the current invoice
