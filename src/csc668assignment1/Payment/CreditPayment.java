@@ -19,12 +19,12 @@ public class CreditPayment extends Payment {
     
     public CreditPayment(String cardNum){
         _type   ="CREDIT";
-        _cardNbr=Integer.parseUnsignedInt(cardNum);
+        _cardNbr=Integer.parseInt(cardNum);
     }
     
     public CreditPayment(double amountDue,String cardNum){
         _type   ="CREDIT";
-        _cardNbr=Integer.parseUnsignedInt(cardNum);
+        _cardNbr=Integer.parseInt(cardNum);
         _amountDue = amountDue;
     }
     
