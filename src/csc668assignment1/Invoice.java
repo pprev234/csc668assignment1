@@ -103,7 +103,7 @@ public class Invoice {
         if(this.paymentType.equals("CHECK")){
             ui.println("Paid by check");
         }else if(this.paymentType.equals("CREDIT")){
-            ui.println("Paid by Credit Card" + this.cardNum);
+            ui.println("Paid by Credit Card " + this.cardNum);
         }else{//cash
             ui.println("Amount Tendered: " + numberFormat.format(this.TenderedAmount));
             ui.println("Amount Returned: " + numberFormat.format(this.ReturedAmount));
