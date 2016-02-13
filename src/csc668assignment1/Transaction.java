@@ -4,12 +4,19 @@
  * Purpose:1. To record information regrading to a transaction as a list of String. E.g date, customer, sale line itmes and payment.
  */
 package csc668assignment1;
+import csc668assignment1.Payment;
+
+
+import csc668assignment1.Payment;
+import csc668assignment1.payment.CashPayment;
+import csc668assignment1.payment.CheckPayment;
+import csc668assignment1.payment.CreditPayment;
 
 public class Transaction {
     private Customer customer;
     private String[] transItems_string;
-    //private Payment payment;
-    private Payment_2 payment;
+    private Payment payment;
+    //private Payment_2 payment;
     private int totalTransItems;
     private int counter;
     private SalesLineItem[] transItems;
@@ -18,11 +25,28 @@ public class Transaction {
         this.customer = new Customer(customerName);//may not needed
         this.transItems_string = transItems;
         //this.payment = new Payment(payment);
-        this.payment = new Payment_2(payment);
+        //this.payment = new Payment_2(payment);
         this.totalTransItems = totalTransItems;
         this.counter = 0;
         this.transItems = new SalesLineItem[100];
         setTransItems();
+        setPayment(payment);
+    }
+    //parse the payment string to initiate payment
+    //CHECK $1000.88
+    //CREDIT 12341
+    //CASH $1000
+    public void setPayment(String payment){
+        if(payment.contains("CREDIT")){
+            //creadit payment
+            this.payment = new CreditPayment(payment.substring(7));
+        }else if(payment.contains("CHECK")){
+            this.payment = new CheckPayment(Double.parseDouble(payment.substring(7)));
+        }else if(payment.contains("CASH")){
+            this.payment = new CashPayment(Double.parseDouble(payment.substring(6)));
+        }
+            
+        
     }
     //create an instance of TransItems by providing its String description
     public void setTransItems(){
@@ -36,7 +60,7 @@ public class Transaction {
     public int getTotalTransItems(){
         return this.totalTransItems;
     }
-    public Payment_2 getPayment(){
+    public Payment getPayment(){
         return this.payment;
     }
     public Customer getCustomer(){
