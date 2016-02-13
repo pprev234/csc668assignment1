@@ -7,6 +7,7 @@ package csc668assignment1;
 import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.text.DecimalFormat;
+import csc668assignment1.UserInterface.*;
 /**
  * This represents an Invoice from the purchase of an item(s)
  * 
@@ -27,11 +28,12 @@ public class Invoice {
     private double ReturedAmount;
     private String cardNum;
     private double total;
+    private UserInterface ui = new UserInterface();
     
     public Invoice(Transaction t){
         //set the Timestamp
         invoiceId++;
-        this.storeName = "Apple store";
+        this.storeName = Store.getStoreName();
         this.customerName = t.getCustomer().getName();
         this.salesLineItem = t.getTransItems();
         this.totalTransItem = t.getTotalTransItems();
@@ -64,7 +66,7 @@ public class Invoice {
         //need to be implemented
         DecimalFormat numberFormat = new DecimalFormat("#.00");
         
-        System.out.println(this.storeName);
+        ui.println(this.storeName);
         for(int i = 0; i < this.totalTransItem; i++){
             String s = "";
             s += this.salesLineItem[i].getProductSpec().getDescription() + "\t";
@@ -74,11 +76,11 @@ public class Invoice {
             s += this.salesLineItem[i].getSubtotal();
             System.out.println(s); 
         }
-        System.out.println("-----------------------------------------");
-        System.out.println("Total $" + Math.floor(this.total * 100) / 100);
-        System.out.println("Amount Tendered: " + numberFormat.format(this.TenderedAmount));
-        System.out.println("Amount Returned: " + numberFormat.format(this.ReturedAmount));
-        System.out.println();
+        ui.println("-----------------------------------------");
+        ui.println("Total $" + Math.floor(this.total * 100) / 100);
+        ui.println("Amount Tendered: " + numberFormat.format(this.TenderedAmount));
+        ui.println("Amount Returned: " + numberFormat.format(this.ReturedAmount));
+        ui.println("");
        
     }
 /*      ACCESSORS             */

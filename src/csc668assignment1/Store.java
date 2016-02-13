@@ -16,7 +16,7 @@ public class Store {
     private static Store store = null; // store is a singleton
     private boolean isOpen;
     private Manager manager;
-    private static String name = "apple store Supreme";
+    private static final String NAME = "Apple Store";
     private static Post post;
     private ProductCatalog catalog;
     private SalesLog salesLog;
@@ -105,8 +105,8 @@ public class Store {
         this.salesLog = salesLog;
     }
 
-    public String getStoreName(){
-        return this.name;
+    public static String getStoreName(){
+        return NAME;
     }
 
 
