@@ -72,9 +72,10 @@ public class Invoice {
             System.out.println(s); 
         }
         System.out.println("-----------------------------------------");
-        System.out.println("Total $" + this.total);
+        System.out.println("Total $" + Math.floor(this.total * 100) / 100);
         System.out.println("Amount Tendered: " + this.TenderedAmount);
         System.out.println("Amount Returned: " + this.ReturedAmount);
+        System.out.println();
        
     }
 /*      ACCESSORS             */
