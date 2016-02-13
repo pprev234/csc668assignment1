@@ -70,7 +70,7 @@ public class SalesLineItem {
         //initiate the product catalog
         ProductCatalog.getProductCatelog("products.txt").setProductCatelog();
         SalesLineItem s = new SalesLineItem("1001", 5);
-        System.out.println(s.toString());
+        System.out.println(s);
         System.out.println("the subtotal for this salesLineitem is: " + s.getSubtotal());
     }
 }

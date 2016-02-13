@@ -19,9 +19,9 @@ public class Post {
         while(transactionReader.hasMoreTransactions()){
             this.currentTrans = transactionReader.getNextTransaction();
             //below is for debugging
-            System.out.println("printing transactoin items");
+            //System.out.println("printing transactoin items");
             this.currentTrans.printTransItems();
-            System.out.println("");
+            //System.out.println("");
             //end debugging. 
             this.currentInvoice = new Invoice(this.currentTrans);
             setInvoice();
@@ -34,6 +34,7 @@ public class Post {
     //for testing 
     //Result: Post makes use of TransactionReader to read a list of transactions successfully.
     public static void main(String[] args) throws FileNotFoundException, IOException{
+        ProductCatalog.getProductCatelog("products.txt").setProductCatelog();
         Post p = new Post("Transactions.txt");
         p.execute();
         

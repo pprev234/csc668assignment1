@@ -55,9 +55,9 @@ public class TransactionReader {
         //comes to the payment
         this.payment = this.line;
         for(int i = 0; i < this.totalTransItems; i++){
-            System.out.println("transItems_String[]: "+this.transItems_String[i]);
+            //System.out.println("transItems_String[]: "+this.transItems_String[i]);
         }
-        System.out.println("Payment: " + this.payment);
+        //System.out.println("Payment: " + this.payment);
         //skip the blank line
         this.in.readLine();
         
@@ -68,10 +68,13 @@ public class TransactionReader {
 
     public static void main(String[] args) throws FileNotFoundException, IOException{
         TransactionReader tr = new TransactionReader("Transactions.txt");
+         ProductCatalog.getProductCatelog("products.txt").setProductCatelog();
         while(tr.hasMoreTransactions()){
              Transaction t = tr.getNextTransaction(); 
-             System.out.println("printing transactoin items");
+             //System.out.println("printing tranItems:");
              t.printTransItems();
+             Invoice i = new Invoice(t);
+             i.print();
         }
        
 

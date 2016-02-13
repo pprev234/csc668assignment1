@@ -6,7 +6,7 @@
 package csc668assignment1;
 
 public class Transaction {
-    private Customer customer;//may not needed
+    private Customer customer;
     private String[] transItems_string;
     //private Payment payment;
     private Payment_2 payment;
@@ -33,6 +33,15 @@ public class Transaction {
             counter++;
         }
     }
+    public int getTotalTransItems(){
+        return this.totalTransItems;
+    }
+    public Payment_2 getPayment(){
+        return this.payment;
+    }
+    public Customer getCustomer(){
+        return this.customer;
+    }
     public SalesLineItem[] getTransItems(){
         return this.transItems;
     }
@@ -56,7 +65,7 @@ public class Transaction {
     }
     public void printTransItems(){
         for(int i = 0; i < this.totalTransItems; i++){
-            System.out.println(this.transItems[i]);
+            System.out.println(this.transItems[i].toString());
         }
     }
     

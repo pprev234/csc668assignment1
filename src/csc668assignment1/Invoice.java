@@ -12,23 +12,42 @@ import java.util.LinkedList;
  * @author Karl
  */
 public class Invoice {
-    //private int InvoiceId;
+    private static int invoiceId = 0;
+    private String storeName;
     private String customerName;
     private Timestamp dateTime;
     /**
      * A linked list of SalesLineItem objects, each with a upc,quantity pair.
      */
     private SalesLineItem[] salesLineItem;
-    //private int quantity;
+    private int totalTransItem;
     private String paymentType;
-    private double subtotal;
+    private double TenderedAmount;
+    private double ReturedAmount;
     private String cardNum;
-    private double amountTendered;
+    private double total;
     
-    //add by Jie
-    private Transaction t;
     public Invoice(Transaction t){
-        this.t = t;
+        //set the Timestamp
+        invoiceId++;
+        this.storeName = "Apple store";
+        this.customerName = t.getCustomer().getName();
+        this.salesLineItem = t.getTransItems();
+        this.totalTransItem = t.getTotalTransItems();
+        this.paymentType = t.getPayment().getPaymentType();
+        this.TenderedAmount = t.getPayment().getTenderedAmount();
+        this.cardNum = t.getPayment().getCardNumber();//null if paid by cash or check   
+        this.total = 0.0;//initialize the total price
+        calculate();
+    }
+    public void calculate(){
+        //Accumulate subtotal from each SalesLineItem to get total
+        for(int i = 0; i < this.totalTransItem; i++){
+            this.total += this.salesLineItem[i].getSubtotal();
+        }
+        //get the amount for return
+        this.ReturedAmount = this.TenderedAmount - this.total;
+        
     }
     /*
      * invoice needs to be printed in the following format
@@ -42,9 +61,26 @@ public class Invoice {
      */
     public void print(){
         //need to be implemented
+        System.out.println(this.storeName);
+        for(int i = 0; i < this.totalTransItem; i++){
+            String s = "";
+            s += this.salesLineItem[i].getProductSpec().getDescription() + "\t";
+            s += this.salesLineItem[i].getQuantity();
+            s += " @ ";
+            s += this.salesLineItem[i].getProductSpec().getUnitPrice() + "\t";
+            s += this.salesLineItem[i].getSubtotal();
+            System.out.println(s); 
+        }
+        System.out.println("-----------------------------------------");
+        System.out.println("Total $" + this.total);
+        System.out.println("Amount Tendered: " + this.TenderedAmount);
+        System.out.println("Amount Returned: " + this.ReturedAmount);
        
     }
 /*      ACCESSORS             */
+    public static int getInvoiceId(){
+        return invoiceId;
+    }
     public String getCustomerName(){
         return customerName;
     }
@@ -54,23 +90,18 @@ public class Invoice {
     public SalesLineItem[] getProductList(){
         return this.salesLineItem;
     }
-    /*public String getUpc(){
-        return upc;
-    }*/
-    /*public int getQuantity(){
-        return quantity;
-    }*/
+
     public String getPaymentType(){
         return paymentType;
     }
-    public double getSubtotal(){
-        return subtotal;
+    public double getTotal(){
+        return this.total;
     }
     public String getCardNum(){
         return cardNum;
     }
     public double getAmountTendered(){
-        return amountTendered;
+        return this.TenderedAmount;
     }
     
 /* MUTATORS                      */
@@ -92,13 +123,10 @@ public class Invoice {
     public void setPaymentType(String name){
         customerName = name;
     }
-    public void setSubtotal(double subtotal){
-        this.subtotal=subtotal;
-    }
     public void setCardNum(String cardNum){
         this.cardNum = cardNum;
     }
     public void setAmountTendered(double amtTendered){
-        this.amountTendered=amtTendered;
+        this.TenderedAmount=amtTendered;
     }
 }
