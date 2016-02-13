@@ -6,6 +6,7 @@
 package csc668assignment1;
 import java.sql.Timestamp;
 import java.util.LinkedList;
+import java.text.DecimalFormat;
 /**
  * This represents an Invoice from the purchase of an item(s)
  * 
@@ -61,6 +62,8 @@ public class Invoice {
      */
     public void print(){
         //need to be implemented
+        DecimalFormat numberFormat = new DecimalFormat("#.00");
+        
         System.out.println(this.storeName);
         for(int i = 0; i < this.totalTransItem; i++){
             String s = "";
@@ -73,8 +76,8 @@ public class Invoice {
         }
         System.out.println("-----------------------------------------");
         System.out.println("Total $" + Math.floor(this.total * 100) / 100);
-        System.out.println("Amount Tendered: " + this.TenderedAmount);
-        System.out.println("Amount Returned: " + this.ReturedAmount);
+        System.out.println("Amount Tendered: " + numberFormat.format(this.TenderedAmount));
+        System.out.println("Amount Returned: " + numberFormat.format(this.ReturedAmount));
         System.out.println();
        
     }
