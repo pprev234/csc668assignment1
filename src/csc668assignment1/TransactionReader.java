@@ -27,7 +27,7 @@ public class TransactionReader {
         this.line = this.in.readLine();//Always assume this is the line for Customer Name
         if(this.line != null){
             this.customerName = this.line;
-            System.out.println(this.customerName);
+            //System.out.println(this.customerName);
             return true;
         }
         return false;
