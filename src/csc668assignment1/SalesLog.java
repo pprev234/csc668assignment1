@@ -55,12 +55,12 @@ public class SalesLog {
                 }
                 //after all items printed, print subtotal and payment.
                 ui.printToGeneralOut("-----\n");
-                ui.printToGeneralOut("Total: "+current.getSubtotal());
+                ui.printToGeneralOut("Total: "+current.getTotal());
                 ui.printToGeneralOut("\n");
                 if(current.getPaymentType().equals("cash")){
                     ui.printToGeneralOut("Cash Tendered: "+current.getAmountTendered());
                     ui.printToGeneralOut("\n");
-                    ui.printToGeneralOut("Cash Returned: "+(current.getSubtotal()-current.getAmountTendered()));
+                    ui.printToGeneralOut("Cash Returned: "+(current.getTotal()-current.getAmountTendered()));
                     ui.printToGeneralOut("\n");
                 }else if(current.getPaymentType().equals("check")){
                     ui.printToGeneralOut("Paid by check");
@@ -113,12 +113,12 @@ public class SalesLog {
                 }
                 //after all items printed, print subtotal and payment.
                 ui.printToGeneralOut("-----\n");
-                ui.printToGeneralOut("Total: "+current.getSubtotal());
+                ui.printToGeneralOut("Total: "+current.getTotal());
                 ui.printToGeneralOut("\n");
                 if(current.getPaymentType().equals("cash")){
                         ui.printToGeneralOut("Cash Tendered: "+current.getAmountTendered());
                         ui.printToGeneralOut("\n");
-                        ui.printToGeneralOut("Cash Returned: "+(current.getSubtotal()-current.getAmountTendered()));
+                        ui.printToGeneralOut("Cash Returned: "+(current.getTotal()-current.getAmountTendered()));
                         ui.printToGeneralOut("\n");
                 }else if(current.getPaymentType().equals("check")){
                     ui.printToGeneralOut("Paid by check");
