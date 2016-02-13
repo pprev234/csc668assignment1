@@ -20,12 +20,13 @@ public class Post {
             this.currentTrans = transactionReader.getNextTransaction();
             //below is for debugging
             //System.out.println("printing transactoin items");
-            this.currentTrans.printTransItems();
+            //this.currentTrans.printTransItems();
             //System.out.println("");
             //end debugging. 
             this.currentInvoice = new Invoice(this.currentTrans);
             setInvoice();
             currentInvoice.print();
+            System.out.println("");
         }
     }
     public void setInvoice(){
