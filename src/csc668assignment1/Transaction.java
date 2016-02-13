@@ -5,17 +5,6 @@
  */
 package csc668assignment1;
 
-/**
- * Each Transaction would have a transaction record in transactionfile.txt
- * taking the transactoin record in the following format:
- *  String,
- *  TransactionItem[],
- *  
- * Prescription: TransactoinReader has a method called getNextTransaction to return in instance of Transaction
- * Assuming getNextTransaction() will initiate the instance of Transaction with Strings.
- * TransactionReader has the responsibility to split each transaction record
- *  
- */
 public class Transaction {
     private Customer customer;//may not needed
     private String[] transItems_string;
@@ -23,7 +12,7 @@ public class Transaction {
     private Payment_2 payment;
     private int totalTransItems;
     private int counter;
-    private TransactionItem[] transItems;
+    private SalesLineItem[] transItems;
     
     public Transaction(String customerName, String[] transItems, int totalTransItems, String payment){
         this.customer = new Customer(customerName);//may not needed
@@ -32,7 +21,7 @@ public class Transaction {
         this.payment = new Payment_2(payment);
         this.totalTransItems = totalTransItems;
         this.counter = 0;
-        this.transItems = new TransactionItem[100];
+        this.transItems = new SalesLineItem[100];
         setTransItems();
     }
     //create an instance of TransItems by providing its String description
@@ -44,12 +33,12 @@ public class Transaction {
             counter++;
         }
     }
-    public TransactionItem[] getTransItems(){
+    public SalesLineItem[] getTransItems(){
         return this.transItems;
     }
     /*@parameter transItem: "1001 2" 
      */
-    public TransactionItem getNextTransItem(String transItem){
+    public SalesLineItem getNextTransItem(String transItem){
         //split transItem
         //System.out.println("transItem:" + transItem);
         String upc = transItem.substring(0, 4);
@@ -59,7 +48,7 @@ public class Transaction {
         if(!transItem.substring(9).isEmpty()){//quantity is more than 1
             quantity = Integer.parseInt(transItem.substring(9));
         }
-        return new TransactionItem(upc, quantity);
+        return new SalesLineItem(upc, quantity);
         
     }
     public boolean hasMoreTransItems(){

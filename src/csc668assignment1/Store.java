@@ -22,7 +22,7 @@ public class Store {
 
     // FILENAME holds the text file that contains products
     private final static String PRODUCTSFILE = "products.txt";
-    private final static String TRANSACTIONSFILE = "transaction.txt";
+    private final static String TRANSACTIONSFILE = "Transactions.txt";
 
     // There is no public constructor and no default, no-arg constructor
     protected Store () { }
