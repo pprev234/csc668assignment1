@@ -23,7 +23,7 @@ public class Post {
             //this.currentTrans.printTransItems();
             //System.out.println("");
             //end debugging. 
-            this.currentInvoice = new Invoice(this.currentTrans);
+            //this.currentInvoice = new Invoice(this.currentTrans);
             setInvoice();
             currentInvoice.print();
             System.out.println("");
