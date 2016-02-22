@@ -12,15 +12,15 @@ import java.io.IOException;
  * Item-quantity pairs in a transaction 
  * @author Karl
  */
-public class SalesLineItem {
+public class TransactionItem {
     private int quantity;
     private String upc;
     private ProductSpec productSpec;
     
-    public SalesLineItem(){
+    public TransactionItem(){
         
     }
-    public SalesLineItem(String upc, int quantity ){
+    public TransactionItem(String upc, int quantity ){
         this.quantity = quantity;
         this.upc = upc;
         this.productSpec = ProductCatalog.getProductSpec(upc);
@@ -69,7 +69,7 @@ public class SalesLineItem {
     public static void main(String[] args) throws FileNotFoundException, IOException{
         //initiate the product catalog
         ProductCatalog.getProductCatelog("products.txt").setProductCatelog();
-        SalesLineItem s = new SalesLineItem("1001", 5);
+        TransactionItem s = new TransactionItem("1001", 5);
         System.out.println(s);
         System.out.println("the subtotal for this salesLineitem is: " + s.getSubtotal());
     }

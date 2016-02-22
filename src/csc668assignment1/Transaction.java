@@ -4,7 +4,6 @@
  * Purpose:1. To record information regrading to a transaction as a list of String. E.g date, customer, sale line itmes and payment.
  */
 package csc668assignment1;
-import csc668assignment1.Payment;
 
 
 import csc668assignment1.Payment;
@@ -19,7 +18,7 @@ public class Transaction {
     //private Payment_2 payment;
     private int totalTransItems;
     private int counter;
-    private SalesLineItem[] transItems;
+    private TransactionItem[] transItems;
     
     public Transaction(String customerName, String[] transItems, int totalTransItems, String payment){
         this.customer = new Customer(customerName);//may not needed
@@ -28,7 +27,7 @@ public class Transaction {
         //this.payment = new Payment_2(payment);
         this.totalTransItems = totalTransItems;
         this.counter = 0;
-        this.transItems = new SalesLineItem[100];
+        this.transItems = new TransactionItem[100];
         setTransItems();
         setPayment(payment);
     }
@@ -66,12 +65,12 @@ public class Transaction {
     public Customer getCustomer(){
         return this.customer;
     }
-    public SalesLineItem[] getTransItems(){
+    public TransactionItem[] getTransItems(){
         return this.transItems;
     }
     /*@parameter transItem: "1001 2" 
      */
-    public SalesLineItem getNextTransItem(String transItem){
+    public TransactionItem getNextTransItem(String transItem){
         //split transItem
         //System.out.println("transItem:" + transItem);
         String upc = transItem.substring(0, 4);
@@ -81,7 +80,7 @@ public class Transaction {
         if(!transItem.substring(9).isEmpty()){//quantity is more than 1
             quantity = Integer.parseInt(transItem.substring(9));
         }
-        return new SalesLineItem(upc, quantity);
+        return new TransactionItem(upc, quantity);
         
     }
     public boolean hasMoreTransItems(){

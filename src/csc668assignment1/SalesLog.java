@@ -28,8 +28,8 @@ public class SalesLog {
         int i,j=0;
         UserInterface ui = new UserInterface();
         Invoice current;
-        SalesLineItem currentItem;
-        SalesLineItem[] productList;
+        TransactionItem currentItem;
+        TransactionItem[] productList;
         
         if(invoiceList.isEmpty()){
             ui.printToGeneralOut("No Records in Sales Log.");
@@ -84,8 +84,8 @@ public class SalesLog {
         int j=0;
         Invoice current;
         UserInterface ui = new UserInterface();
-        SalesLineItem currentItem;
-        SalesLineItem[] productList;
+        TransactionItem currentItem;
+        TransactionItem[] productList;
         
         if(invoiceList.isEmpty()){
             ui.printToGeneralOut("No Records in Sales Log.");

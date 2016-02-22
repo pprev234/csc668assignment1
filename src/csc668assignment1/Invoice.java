@@ -24,9 +24,9 @@ public class Invoice {
     private String customerName;
     private Timestamp dateTime;
     /**
-     * A linked list of SalesLineItem objects, each with a upc,quantity pair.
+     * A linked list of TransactionItem objects, each with a upc,quantity pair.
      */
-    private SalesLineItem[] salesLineItem;
+    private TransactionItem[] salesLineItem;
     private int totalTransItem;
     //variables for Payment
     private String paymentType;
@@ -48,7 +48,7 @@ public class Invoice {
         calculateTotal(); 
     }
     public void calculateTotal(){
-        //Accumulate subtotal from each SalesLineItem to get total
+        //Accumulate subtotal from each TransactionItem to get total
         for(int i = 0; i < this.totalTransItem; i++){
             this.total += this.salesLineItem[i].getSubtotal();
         }
@@ -123,7 +123,7 @@ public class Invoice {
     public Timestamp getTimestamp(){
         return dateTime;
     }
-    public SalesLineItem[] getProductList(){
+    public TransactionItem[] getProductList(){
         return this.salesLineItem;
     }
 
@@ -153,7 +153,7 @@ public class Invoice {
     /*public void setQuantity(int quantity){
         this.quantity=quantity;
     }*/
-    public void setProductList(SalesLineItem[] a){
+    public void setProductList(TransactionItem[] a){
         this.salesLineItem=a;
     }
     public void setPaymentType(String name){
