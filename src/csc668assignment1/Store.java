@@ -3,6 +3,8 @@ package csc668assignment1;
 import csc668assignment1.UserInterface.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
   *
@@ -122,9 +124,21 @@ public class Store {
         manager.initializePost(store);
         store.setCatalog(manager.initializeProductCatalog(PRODUCTSFILE));
         manager.initializeSalesLog(store);
-        TransactionReader t = new TransactionReader(TRANSACTIONSFILE);
+        //TransactionReader t = new TransactionReader(TRANSACTIONSFILE);
+        final GUITransactionReader t = new GUITransactionReader();
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    new PostGUI(t).setVisible(true);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(PostGUI.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(PostGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
         while(t.hasMoreTransactions()){
-            Transaction newTransaction = t.getNextTransaction();
+            Transaction newTransaction = t.getCurrentTransaction();
             Store.post.processTransaction(newTransaction);
             //get invoice from post
             //add invoice to salescatalog 
