@@ -20,9 +20,9 @@ public class PostGUI extends javax.swing.JFrame {
     /**
      * Creates new form PostGUI
      */
-    public PostGUI() throws FileNotFoundException, IOException {
+    public PostGUI(GUITransactionReader t) throws FileNotFoundException, IOException {
         initComponents();
-        this.guiTransactionReader = new GUITransactionReader();
+        this.guiTransactionReader = t;
         //initialize the ProductCatalog once. This can be initialized in Store. 
         //ProductCatalog.getProductCatelog("products.txt").setProductCatelog();
     }
@@ -382,6 +382,15 @@ public class PostGUI extends javax.swing.JFrame {
         String payment = (String)this.paymentType_ComboBox.getSelectedItem()
                   + "" + this.amount_TextField.getText();
         this.guiTransactionReader.setPayment(payment);
+        //clear GUI
+        this.customerName_TextField.setText("");
+        this.upc_ComboBox.setSelectedIndex(0);
+        this.quantity_ComboBox.setSelectedIndex(0);
+        this.invoice_TextArea.setText("");
+        this.invoice_total_amount.setText("");
+        this.paymentType_ComboBox.setSelectedIndex(0);//CASH
+        this.amount_Label.setText("Amount");
+        
     }                                          
 
     private void paymentType_ComboBoxActionPerformed(java.awt.event.ActionEvent evt) {                                                     
@@ -439,10 +448,11 @@ public class PostGUI extends javax.swing.JFrame {
         //</editor-fold>
         
         /* Create and display the form */
+        final GUITransactionReader t =  new GUITransactionReader();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new PostGUI().setVisible(true);
+                    new PostGUI(t).setVisible(true);
                 } catch (FileNotFoundException ex) {
                     Logger.getLogger(PostGUI.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (IOException ex) {
