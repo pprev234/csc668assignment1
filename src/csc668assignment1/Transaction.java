@@ -11,85 +11,87 @@ import csc668assignment1.payment.CashPayment;
 import csc668assignment1.payment.CheckPayment;
 import csc668assignment1.payment.CreditPayment;
 
+/**
+ *
+ * @author Jie Li
+ * Description: One instance of Transaction stores one record of transaciton.
+ * Assuming that each transaction record doesn't have customer and payment; it 
+ * only consists of a list of TransactionItems. 
+ * 
+ */
 public class Transaction {
-    private Customer customer;
-    private String[] transItems_string;
-    private Payment payment;
-    //private Payment_2 payment;
-    private int totalTransItems;
-    private int counter;
+
     private TransactionItem[] transItems;
+    private TransactionItem currentTransactionItem;
+    private Customer customer;
+    private int totalTransItems;
+    private double totalPrice;
+    private Payment payment;
     
-    public Transaction(String customerName, String[] transItems, int totalTransItems, String payment){
-        this.customer = new Customer(customerName);//may not needed
-        this.transItems_string = transItems;
-        //this.payment = new Payment(payment);
-        //this.payment = new Payment_2(payment);
-        this.totalTransItems = totalTransItems;
-        this.counter = 0;
+    //This non-concrete constructor will be invoked by TransactionReader 
+    public Transaction(String customerName){
+        this.setCustomer(customerName);
+        //initiate the transactionItems array
         this.transItems = new TransactionItem[100];
-        setTransItems();
-        setPayment(payment);
+        this.totalTransItems = 0;
+        this.totalPrice = 0.0;
+        
     }
-    //parse the payment string to initiate payment
-    //CHECK $1000.88
-    //CREDIT 12341
-    //CASH $1000
+    //called by GUITransactionReader
+    //@param transactionItem is of String value -> "1001" + " "+"1"
+    public void addTransactionItem(String transactionItem){
+        //System.out.println("Transaction.addTransactionItem: currentTransacitonItem: "+ transactionItem);
+        this.setCurrentTransactionItem(transactionItem);
+        this.transItems[this.totalTransItems++] = this.currentTransactionItem;
+        //for testing
+        //this.printCurrentTransactionItem();
+        
+    }
+    public void setCurrentTransactionItem(String transactionItem){//"1001 1"
+        String upc = transactionItem.substring(0, 4);
+        int quantity = Integer.parseInt(transactionItem.substring(5));
+        this.currentTransactionItem = new TransactionItem(upc, quantity);
+    }
+    public void setCustomer(String customerName){
+        this.customer = new Customer(customerName);
+    }
     public void setPayment(String payment){
-        if(payment.contains("CREDIT")){
-            //creadit payment
+        if(payment.contains("CREDIT")){//"CREDIT 1234"
             this.payment = new CreditPayment(payment.substring(7));
-        }else if(payment.contains("CHECK")){
-            this.payment = new CheckPayment(Double.parseDouble(payment.substring(7)));
-        }else if(payment.contains("CASH")){
-            this.payment = new CashPayment(Double.parseDouble(payment.substring(6)));
+        }else if(payment.contains("CHECK")){//"CHECK 1000"
+            this.payment = new CheckPayment(Double.parseDouble(payment.substring(6)));
+        }else if(payment.contains("CASH")){//"CASH 1000"
+            this.payment = new CashPayment(Double.parseDouble(payment.substring(5)));
         }
             
         
     }
-    //create an instance of TransItems by providing its String description
-    public void setTransItems(){
-        while(hasMoreTransItems()){
-            //add item to array
-            this.transItems[this.counter] = getNextTransItem(this.transItems_string[this.counter]);
-            //System.out.println("this.transItems[this.counter]: "+this.transItems[this.counter]);
-            counter++;
-        }
+    public double getTotalPrice(){
+        this.totalPrice += this.currentTransactionItem.getSubtotal();
+        this.totalPrice =Math.floor(this.totalPrice * 100) / 100;
+        return this.totalPrice;
+        
     }
-    public int getTotalTransItems(){
-        return this.totalTransItems;
+    public TransactionItem getCurrentTransactionItem(){
+        return this.currentTransactionItem;
     }
-    public Payment getPayment(){
-        return this.payment;
-    }
+    
     public Customer getCustomer(){
         return this.customer;
     }
     public TransactionItem[] getTransItems(){
         return this.transItems;
     }
-    /*@parameter transItem: "1001 2" 
-     */
-    public TransactionItem getNextTransItem(String transItem){
-        //split transItem
-        //System.out.println("transItem:" + transItem);
-        String upc = transItem.substring(0, 4);
-        //System.out.println("transItem.substring(0, 4): " + upc);
-        int quantity = 1;
-        //System.out.println("transItem.substring(9): " + transItem.substring(9) );
-        if(!transItem.substring(9).isEmpty()){//quantity is more than 1
-            quantity = Integer.parseInt(transItem.substring(9));
-        }
-        return new TransactionItem(upc, quantity);
-        
+    public Payment getPayment(){
+        return this.payment;
     }
-    public boolean hasMoreTransItems(){
-        return this.counter < this.totalTransItems;
+    public int getTotalTransItems(){
+        return this.totalTransItems;
     }
     public void printTransItems(){
         for(int i = 0; i < this.totalTransItems; i++){
             System.out.println(this.transItems[i].toString());
         }
     }
-    
+            
 }

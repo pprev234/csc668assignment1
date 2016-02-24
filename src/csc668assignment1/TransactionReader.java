@@ -15,10 +15,9 @@ import java.io.IOException;
 public class TransactionReader {
     private BufferedReader in;
     private String line;
-    private Transaction transaction;
+    private Transaction currentTransaction;
     private String customerName;
-    private String[] transItems_String;
-    private int totalTransItems;
+    private String transactionItem;
     private String payment;
     public TransactionReader(String transactionFile) throws FileNotFoundException{
         this.in = new BufferedReader(new FileReader(transactionFile));
@@ -28,47 +27,43 @@ public class TransactionReader {
         if(this.line != null){
             this.customerName = this.line;
             //System.out.println(this.customerName);
+            this.currentTransaction = new Transaction(this.customerName);
             return true;
         }
         return false;
     }
+    
+
     /*
      * e.g 
      * this.customerName = "Jie";
      * this.transItems_String = new String[2];
      * transItems_String[0] = "1001 2";
      * transItems_String[1] = "1002 1";
-     * this.payment = "CASH/CHECK $10000";
+     * this.payment = "CASH 10000";
      */
     public Transaction getNextTransaction() throws IOException{
-        //reset totalTransItems for this new transaction
-        this.totalTransItems = 0;
-        this.transItems_String = new String[100];
         //read the first line of item
         this.line = this.in.readLine();
         //System.out.println("nextTrans: " + this.line);
         while(!this.line.startsWith("C")){//reports error here
-            this.transItems_String[this.totalTransItems++] = this.line;
+            this.transactionItem = this.line;
+            //add transaction item to current Transaction
+            this.currentTransaction.addTransactionItem(this.transactionItem);
             this.line = this.in.readLine();
             //System.out.println("nextTrans: " + this.line);
         }
-        //comes to the payment
-        this.payment = this.line;
-        for(int i = 0; i < this.totalTransItems; i++){
-            //System.out.println("transItems_String[]: "+this.transItems_String[i]);
-        }
-        //System.out.println("Payment: " + this.payment);
-        //skip the blank line
-        this.in.readLine();
-        
-        this.transaction =  new Transaction(customerName, transItems_String, totalTransItems, payment);
-        return this.transaction;
+        this.payment = this.line;//read the payment
+        this.currentTransaction.setPayment(payment);//set payment
+        this.in.readLine();//read an empty line
+ 
+        return this.currentTransaction;
         
     }
 
     public static void main(String[] args) throws FileNotFoundException, IOException{
         TransactionReader tr = new TransactionReader("Transactions.txt");
-         ProductCatalog.getProductCatelog("products.txt").setProductCatelog();
+        ProductCatalog.getProductCatelog("products.txt").setProductCatelog();
         while(tr.hasMoreTransactions()){
              Transaction t = tr.getNextTransaction(); 
              //System.out.println("printing tranItems:");

@@ -63,14 +63,16 @@ public class TransactionItem {
     //override the toString() method for testing
     @Override
     public String toString(){
-        return "upc: " + upc + " quantity: " + quantity + " unit Price: "+ this.productSpec.getUnitPrice();
+        //return "upc: " + upc + " quantity: " + quantity + " unit Price: "+ this.productSpec.getUnitPrice();
+        return this.productSpec.getDescription() + "\t\t\t" + this.quantity + "\t" 
+                + this.productSpec.getUnitPrice() + "\t"+ this.getSubtotal();
         
     }
+    //testing TransactionItem.java
     public static void main(String[] args) throws FileNotFoundException, IOException{
         //initiate the product catalog
         ProductCatalog.getProductCatelog("products.txt").setProductCatelog();
         TransactionItem s = new TransactionItem("1001", 5);
         System.out.println(s);
-        System.out.println("the subtotal for this salesLineitem is: " + s.getSubtotal());
     }
 }
