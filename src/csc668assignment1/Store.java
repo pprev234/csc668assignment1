@@ -1,6 +1,8 @@
 
 package csc668assignment1;
 import csc668assignment1.UserInterface.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 /**
   *
@@ -45,7 +47,7 @@ public class Store {
 
     public void initializePost() {
         try {
-        this.post = new Post(TRANSACTIONSFILE);
+        this.post = new Post();
         } catch (Exception e) {
             UserInterface ui = new UserInterface();
             ui.printString("Transactions file not found, program will exit.");
@@ -110,7 +112,7 @@ public class Store {
     }
 
 
-    public static void main (String[] args) {    
+    public static void main (String[] args) throws FileNotFoundException, IOException {    
         createStore();
         // Manager causes a series of initialization steps to be conducted:
         // (1) open store (2) initialize the Post 
@@ -120,14 +122,22 @@ public class Store {
         manager.initializePost(store);
         store.setCatalog(manager.initializeProductCatalog(PRODUCTSFILE));
         manager.initializeSalesLog(store);
-        // Post instance is requested to carry out the transactions
-        try {
-        post.execute();
-        } catch (Exception e) {
-            UserInterface ui = new UserInterface();
-            ui.printString("Post failed to process the transactions. Program will exit.");
-            System.exit(1);
-        }   
+        TransactionReader t = new TransactionReader(TRANSACTIONSFILE);
+        while(t.hasMoreTransactions()){
+            Transaction newTransaction = t.getNextTransaction();
+            Store.post.processTransaction(newTransaction);
+            //get invoice from post
+            Store.post.getInvoice().print();
+            
+        }
+        // Post instance is requested to carry out each transaction
+        //try {
+        //post.execute();
+        //} catch (Exception e) {
+            //UserInterface ui = new UserInterface();
+            //ui.printString("Post failed to process the transactions. Program will exit.");
+            //System.exit(1);
+        //}   
         // After customers have been served, Manager closes the store
         manager.closeStore(store);
     } // end main method
