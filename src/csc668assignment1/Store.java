@@ -127,6 +127,7 @@ public class Store {
             Transaction newTransaction = t.getNextTransaction();
             Store.post.processTransaction(newTransaction);
             //get invoice from post
+            //add invoice to salescatalog 
             Store.post.getInvoice().print();
             
         }
