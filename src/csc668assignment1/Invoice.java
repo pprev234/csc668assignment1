@@ -18,6 +18,9 @@ import csc668assignment1.UserInterface.*;
  * 
  * @author Karl
  */
+/*
+ * Added by Jie: Add payment to the Invoice class.
+ */
 public class Invoice {
     private static int invoiceId = 0;
     private String storeName;
@@ -35,6 +38,7 @@ public class Invoice {
     private int cardNum;
     private double total;
     private UserInterface ui = new UserInterface();
+    private Payment payment;
     
     public Invoice(Transaction t){
         //set the Timestamp
@@ -44,7 +48,7 @@ public class Invoice {
         this.salesLineItem = t.getTransItems();
         this.totalTransItem = t.getTotalTransItems();
         this.total = 0.0;//initialize the total price
-        getPayment(t.getPayment());
+        setPayment(t.getPayment());
         calculateTotal(); 
     }
     public void calculateTotal(){
@@ -57,21 +61,32 @@ public class Invoice {
         this.ReturedAmount = this.TenderedAmount - this.total;
         
     }
-    public void getPayment(Payment payment){
+    
+    /*
+     * @param  payment an instance of one of the subclass of Payment
+     */
+    public void setPayment(Payment payment){
         
         if(payment instanceof CheckPayment){
             CheckPayment check = (CheckPayment)payment;
+            this.payment = check;
             this.paymentType = check.getType();
-            //this.TenderedAmount = check.getAmountDue();
+            this.TenderedAmount = check.getAmountDue();
         }else if(payment instanceof CreditPayment){
             CreditPayment credit = (CreditPayment)payment;
+            this.payment = credit;
             this.paymentType = credit.getType();
             this.cardNum = credit.getCardNum();
         }else{
             CashPayment cash = (CashPayment)payment;
+            this.payment = cash;
             this.paymentType = cash.getType();
             this.TenderedAmount = cash.getAmountDue();
         }
+    }
+    
+    public Payment getPayment(){
+        return this.payment;
     }
     /*
      * invoice needs to be printed in the following format
