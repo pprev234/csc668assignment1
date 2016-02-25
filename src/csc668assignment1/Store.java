@@ -126,6 +126,7 @@ public class Store {
         manager.initializeSalesLog(store);
         //TransactionReader t = new TransactionReader(TRANSACTIONSFILE);
         final GUITransactionReader t = new GUITransactionReader();
+        //set up the GUI for Post
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
@@ -140,11 +141,12 @@ public class Store {
         while(t.hasMoreTransactions()){
             Transaction newTransaction = t.getCurrentTransaction();
             Store.post.processTransaction(newTransaction);
-            //get invoice from post
+            Invoice invoice= Store.post.getInvoice();
+            invoice.print();
             //add invoice to salescatalog 
-            Store.post.getInvoice().print();
-            
+            store.getSalesLog().recordInvoice(invoice);          
         }
+        
         // Post instance is requested to carry out each transaction
         //try {
         //post.execute();
