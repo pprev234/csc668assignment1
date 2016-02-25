@@ -19,7 +19,10 @@ public class SalesLog {
     //final static String TRANSACTION_FILE_NAME = "transaction.txt"; 
     private LinkedList<Invoice> invoiceList;
     private UserInterface ui;
-    SalesLog(){};
+    SalesLog(){
+        //initialize the invoiceList
+        invoiceList = new LinkedList<Invoice>();
+    };
     /**
      * shows all invoices in chronological order, earliest to latest, assuming 
      * every Invoice is appended to the LinkedList.
