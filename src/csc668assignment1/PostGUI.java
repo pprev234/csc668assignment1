@@ -380,15 +380,16 @@ public class PostGUI extends javax.swing.JFrame {
         // Set the payment when the user hit the "Pay" button
         // payment format example: "CASH" + " "+ "amount"
         String payment = (String)this.paymentType_ComboBox.getSelectedItem()
-                  + "" + this.amount_TextField.getText();
+                  + " " + this.amount_TextField.getText();
         this.guiTransactionReader.setPayment(payment);
         //clear GUI
-        this.customerName_TextField.setText("");
-        this.upc_ComboBox.setSelectedIndex(0);
-        this.quantity_ComboBox.setSelectedIndex(0);
-        this.invoice_TextArea.setText("");
-        this.invoice_total_amount.setText("");
-        this.paymentType_ComboBox.setSelectedIndex(0);//CASH
+        this.customerName_TextField.setText("");//clear customer name
+        this.upc_ComboBox.setSelectedIndex(0);//clear upc box
+        this.quantity_ComboBox.setSelectedIndex(0);//clear quantity box
+        this.invoice_TextArea.setText("");//clear invoice panel
+        this.invoice_total_amount.setText("");//clear total price in invoice
+        this.paymentType_ComboBox.setSelectedIndex(0);//clear payment method
+        this.amount_TextField.setText("");//clear payment amount
         this.amount_Label.setText("Amount");
         
     }                                          
