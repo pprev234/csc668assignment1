@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import java.util.Date;
 /**
  *
  * @author Jie
@@ -20,13 +20,16 @@ public class PostGUI extends javax.swing.JFrame {
     /**
      * Creates new form PostGUI
      */
+    Date date;
     public PostGUI(GUITransactionReader t) throws FileNotFoundException, IOException {
         initComponents();
+        this.date = new Date();
         this.guiTransactionReader = t;
         //initialize the ProductCatalog once. This can be initialized in Store. 
         //ProductCatalog.getProductCatelog("products.txt").setProductCatelog();
+        this.time_Label.setText(this.date.toString());
     }
-
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -72,7 +75,7 @@ public class PostGUI extends javax.swing.JFrame {
         upc_Label.setText("UPC");
 
         upc_ComboBox.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        upc_ComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1001", "1002", "1003", "1004", "1005", "1006", "1007" }));
+        upc_ComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "select", "1001", "1002", "1003", "1004", "1005", "1006","1007" }));
 
         enter_Button.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         enter_Button.setText("ENTER");
@@ -86,7 +89,7 @@ public class PostGUI extends javax.swing.JFrame {
         quantity_Label.setText("Quantity");
 
         quantity_ComboBox.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        quantity_ComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", " " }));
+        quantity_ComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "select", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10 " }));
         quantity_ComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 quantity_ComboBoxActionPerformed(evt);
@@ -223,7 +226,7 @@ public class PostGUI extends javax.swing.JFrame {
         payemntType_Label.setText("Payment type");
 
         paymentType_ComboBox.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        paymentType_ComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "CASH", "CREDIT", "CHECK", " " }));
+        paymentType_ComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "select","CASH", "CREDIT", "CHECK" }));
         paymentType_ComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 paymentType_ComboBoxActionPerformed(evt);
@@ -391,6 +394,7 @@ public class PostGUI extends javax.swing.JFrame {
         this.paymentType_ComboBox.setSelectedIndex(0);//clear payment method
         this.amount_TextField.setText("");//clear payment amount
         this.amount_Label.setText("Amount");
+        this.time_Label.setText(this.date.toString());
         
     }                                          
 
