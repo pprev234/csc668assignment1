@@ -1,8 +1,4 @@
-/*
- * Author: Jie Li
- * Date: 2016/2/10
- * Purpose:1. To record information regrading to a transaction as a list of String. E.g date, customer, sale line itmes and payment.
- */
+
 package csc668assignment1;
 
 

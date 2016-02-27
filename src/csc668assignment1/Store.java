@@ -127,6 +127,22 @@ public class Store {
         //TransactionReader t = new TransactionReader(TRANSACTIONSFILE);
         final GUITransactionReader t = new GUITransactionReader();
         //set up the GUI for Post
+       try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(PostGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(PostGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(PostGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(PostGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
@@ -146,16 +162,7 @@ public class Store {
             //add invoice to salescatalog 
             store.getSalesLog().recordInvoice(invoice);          
         }
-        
-        // Post instance is requested to carry out each transaction
-        //try {
-        //post.execute();
-        //} catch (Exception e) {
-            //UserInterface ui = new UserInterface();
-            //ui.printString("Post failed to process the transactions. Program will exit.");
-            //System.exit(1);
-        //}   
-        // After customers have been served, Manager closes the store
+
         manager.closeStore(store);
     } // end main method
 

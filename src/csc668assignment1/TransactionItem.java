@@ -69,10 +69,10 @@ public class TransactionItem {
         
     }
     //testing TransactionItem.java
-    public static void main(String[] args) throws FileNotFoundException, IOException{
+    //public static void main(String[] args) throws FileNotFoundException, IOException{
         //initiate the product catalog
-        ProductCatalog.getProductCatelog("products.txt").setProductCatelog();
-        TransactionItem s = new TransactionItem("1001", 5);
-        System.out.println(s);
-    }
+        //ProductCatalog.getProductCatelog("products.txt").setProductCatelog();
+       // TransactionItem s = new TransactionItem("1001", 5);
+        //System.out.println(s);
+   // }
 }

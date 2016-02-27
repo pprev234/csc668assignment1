@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package csc668assignment1;
 
 /**
@@ -13,9 +10,9 @@ package csc668assignment1;
 public class GUITransactionReader {
     private Transaction currentTransaction;//need to be reset
     //use flag to controll the concurrent accesses to GUITransactionReader from GUI and Store
-    boolean flag;
+    private boolean flag;
 
-    //contructor
+    //constructor
     public GUITransactionReader(){
         flag = false;
     }

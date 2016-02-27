@@ -1,8 +1,3 @@
-/*
- * Author: Jie Li
- * Date: 2016/2/10
- * Purpose:1. To read product description from a txt file for ProductCatalog
- */
 package csc668assignment1;
 
 import java.io.BufferedReader;
@@ -11,8 +6,9 @@ import java.io.FileReader;
 import java.io.IOException;
 
 /**
- *
- * @author lenovo
+ Author: Jie Li
+ * Date: 2016/2/10
+ * Purpose:1. To read product description from a txt file for ProductCatalog
  */
 public class ProductReader {
     private BufferedReader in;
@@ -44,11 +40,11 @@ public class ProductReader {
        
     }
     //main method for testing
-    public static void main(String[] args) throws FileNotFoundException, IOException{
-        ProductReader pr = new ProductReader("products.txt");
-        int linenumber = 0;
-        while(pr.hasMoreProduct()){
-            System.out.println(linenumber++);
-        }
-    }
+    //public static void main(String[] args) throws FileNotFoundException, IOException{
+        //ProductReader pr = new ProductReader("products.txt");
+        //int linenumber = 0;
+        //while(pr.hasMoreProduct()){
+            //System.out.println(linenumber++);
+       // }
+   // }
 }

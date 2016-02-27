@@ -50,13 +50,13 @@ public class ProductCatalog {
         
     }
     //test method 
-    public static void main(String[] args) throws FileNotFoundException, IOException{
-        //initiate one instance of ProductCatalog
-        ProductCatalog pc = ProductCatalog.getProductCatelog("products.txt");
-        pc.setProductCatelog();
-        System.out.println(ProductCatalog.getProductSpec("1001"));
-        System.out.println(ProductCatalog.hasProduct("1001"));
-    }
+    //public static void main(String[] args) throws FileNotFoundException, IOException{
+       // //initiate one instance of ProductCatalog
+        //ProductCatalog pc = ProductCatalog.getProductCatelog("products.txt");
+        //pc.setProductCatelog();
+        //System.out.println(ProductCatalog.getProductSpec("1001"));
+        //System.out.println(ProductCatalog.hasProduct("1001"));
+    //}
     
 }
 

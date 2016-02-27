@@ -61,18 +61,18 @@ public class TransactionReader {
         
     }
 
-    public static void main(String[] args) throws FileNotFoundException, IOException{
-        TransactionReader tr = new TransactionReader("Transactions.txt");
-        ProductCatalog.getProductCatelog("products.txt").setProductCatelog();
-        while(tr.hasMoreTransactions()){
-             Transaction t = tr.getNextTransaction(); 
+    //public static void main(String[] args) throws FileNotFoundException, IOException{
+        //TransactionReader tr = new TransactionReader("Transactions.txt");
+        //ProductCatalog.getProductCatelog("products.txt").setProductCatelog();
+        //while(tr.hasMoreTransactions()){
+             //Transaction t = tr.getNextTransaction(); 
              //System.out.println("printing tranItems:");
-             t.printTransItems();
-             Invoice i = new Invoice(t);
-             i.print();
-        }
+             //t.printTransItems();
+             //Invoice i = new Invoice(t);
+             //i.print();
+        //}
        
 
-    }
+    //}
     
 }
