@@ -1,13 +1,13 @@
 /*
  * Only a stub for now
  */
-package csc668assignment1;
+package csc668assignment1.Payment;
 
 /**
  *
  * @author axelanconaesselmann, Susanne
  */
-public abstract class Payment {
+public abstract  class Payment {
     protected double _amountDue;
     protected String _type;
     

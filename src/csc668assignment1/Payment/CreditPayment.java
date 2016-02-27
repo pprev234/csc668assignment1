@@ -3,7 +3,7 @@
  */
 package csc668assignment1.payment;
 
-import csc668assignment1.Payment;
+import csc668assignment1.Payment.Payment;
 
 /**
  *

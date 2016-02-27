@@ -11,9 +11,10 @@ package csc668assignment1;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class ProductCatalog {
+public class ProductCatalog implements Serializable{
     private static HashMap specifications = new HashMap();
     private static ProductCatalog pc = null;
     private static ProductReader pr = null;

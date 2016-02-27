@@ -1,6 +1,5 @@
 
 package csc668assignment1;
-import csc668assignment1.UserInterface.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -51,8 +50,8 @@ public class Store {
         try {
         this.post = new Post();
         } catch (Exception e) {
-            UserInterface ui = new UserInterface();
-            ui.printString("Transactions file not found, program will exit.");
+            
+            System.out.println("Transactions file not found, program will exit.");
             System.exit(1);
         }
     }
@@ -127,7 +126,7 @@ public class Store {
         //TransactionReader t = new TransactionReader(TRANSACTIONSFILE);
         final GUITransactionReader t = new GUITransactionReader();
         //set up the GUI for Post
-       try {
+        try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());

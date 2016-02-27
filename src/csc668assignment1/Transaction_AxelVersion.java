@@ -3,6 +3,8 @@
  */
 package csc668assignment1;
 
+import csc668assignment1.Payment.Payment;
+
 /**
  *
  * @author 

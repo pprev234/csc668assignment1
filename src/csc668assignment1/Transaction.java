@@ -2,7 +2,7 @@
 package csc668assignment1;
 
 
-import csc668assignment1.Payment;
+import csc668assignment1.Payment.Payment;
 import csc668assignment1.payment.CashPayment;
 import csc668assignment1.payment.CheckPayment;
 import csc668assignment1.payment.CreditPayment;

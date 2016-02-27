@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package csc668assignment1;
+import csc668assignment1.Payment.Payment;
 import csc668assignment1.payment.CashPayment;
 import csc668assignment1.payment.CheckPayment;
 import csc668assignment1.payment.CreditPayment;
@@ -11,7 +12,6 @@ import java.sql.Timestamp;
 
 import java.util.LinkedList;
 import java.text.DecimalFormat;
-import csc668assignment1.UserInterface.*;
 
 /**
  * This represents an Invoice from the purchase of an item(s)
@@ -37,7 +37,6 @@ public class Invoice {
     private double ReturedAmount;
     private int cardNum;
     private double total;
-    private UserInterface ui = new UserInterface();
     private Payment payment;
     
     public Invoice(Transaction t){
@@ -100,10 +99,10 @@ public class Invoice {
      */
     public void print(){
         //need to be implemented
-        ui.println(this.customerName);
+        System.out.println(this.customerName);
         DecimalFormat numberFormat = new DecimalFormat("#.00");
         
-        ui.println(this.storeName);
+        System.out.println(this.storeName);
         for(int i = 0; i < this.totalTransItem; i++){
             String s = "";
             s += this.salesLineItem[i].getProductSpec().getDescription() + "\t";
@@ -111,20 +110,20 @@ public class Invoice {
             s += " @ ";
             s += this.salesLineItem[i].getProductSpec().getUnitPrice() + "\t";
             s += this.salesLineItem[i].getSubtotal();
-            ui.println(s); 
+            System.out.println(s); 
         }
-        ui.println("-----------------------------------------");
-        ui.println("Total $" + Math.floor(this.total * 100) / 100);
+        System.out.println("-----------------------------------------");
+        System.out.println("Total $" + Math.floor(this.total * 100) / 100);
         if(this.paymentType.equals("CHECK")){
-            ui.println("Paid by check");
+             System.out.println("Paid by check");
         }else if(this.paymentType.equals("CREDIT")){
-            ui.println("Paid by Credit Card " + this.cardNum);
+             System.out.println("Paid by Credit Card " + this.cardNum);
         }else{//cash
-            ui.println("Amount Tendered: " + numberFormat.format(this.TenderedAmount));
-            ui.println("Amount Returned: " + numberFormat.format(this.ReturedAmount));
+             System.out.println("Amount Tendered: " + numberFormat.format(this.TenderedAmount));
+             System.out.println("Amount Returned: " + numberFormat.format(this.ReturedAmount));
         }
 
-        ui.println("");
+        System.out.println("");
 
        
     }

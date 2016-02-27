@@ -6,7 +6,7 @@
  * 
  */
 package csc668assignment1;
-import csc668assignment1.UserInterface.*;
+
 
 
 public class Manager {
@@ -37,8 +37,7 @@ public class Manager {
         p = ProductCatalog.getProductCatelog(filename);
         p.setProductCatelog();
         } catch (Exception e) {
-            UserInterface ui = new UserInterface();
-            ui.printString("Product Catalog could not be initialized; exiting Post system");
+             System.out.println("Product Catalog could not be initialized; exiting Post system");
             System.exit(1);
         }
         return p;
