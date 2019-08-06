@@ -1,5 +1,5 @@
 
-package csc668assignment1;
+package records;
 
 /**
  *

@@ -1,7 +1,7 @@
 /*
  * Only a stub for now
  */
-package csc668assignment1.Payment;
+package records.Payment;
 
 /**
  *

@@ -1,11 +1,11 @@
 
-package csc668assignment1;
+package records;
 
 
-import csc668assignment1.Payment.Payment;
-import csc668assignment1.payment.CashPayment;
-import csc668assignment1.payment.CheckPayment;
-import csc668assignment1.payment.CreditPayment;
+import records.Payment;
+import records.CashPayment;
+import records.CheckPayment;
+import records.CreditPayment;
 
 /**
  *

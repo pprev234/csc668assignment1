@@ -5,7 +5,7 @@
  * Question left:Are we supposed to record the quantity of product?
  *                 Do we need to sort the products?
  */
-package csc668assignment1;
+package records;
 
 //ProductCatelog is a singleton
 

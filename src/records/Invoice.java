@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package csc668assignment1;
-import csc668assignment1.Payment.Payment;
-import csc668assignment1.payment.CashPayment;
-import csc668assignment1.payment.CheckPayment;
-import csc668assignment1.payment.CreditPayment;
+package records;
+import records.Payment;
+import records.CashPayment;
+import records.CheckPayment;
+import records.CreditPayment;
 import java.sql.Timestamp;
 
 import java.util.LinkedList;

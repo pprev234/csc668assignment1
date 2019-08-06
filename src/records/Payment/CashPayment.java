@@ -1,9 +1,9 @@
 /*
  * Only a stub for now
  */
-package csc668assignment1.payment;
+package records.payment;
 
-import csc668assignment1.Payment.Payment;
+import records.Payment;
 
 /**
  *

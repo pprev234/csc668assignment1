@@ -3,7 +3,7 @@
  * Customer class stores information relating to the customers who enter 
  * into transactions at the Post.
  */
-package csc668assignment1;
+package records;
 
 
 public class Customer {

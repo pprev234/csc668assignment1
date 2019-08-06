@@ -6,7 +6,7 @@
  * and make invoice returned to Store.
  * 
  */
-package csc668assignment1;
+package records;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

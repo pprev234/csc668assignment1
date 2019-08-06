@@ -5,7 +5,7 @@
  * the product catalog, sales log, and Post.
  * 
  */
-package csc668assignment1;
+package records;
 
 
 

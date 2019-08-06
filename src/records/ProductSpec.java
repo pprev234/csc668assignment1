@@ -3,7 +3,7 @@
  * Date: 2016/2/10
  * Purpose:1. To store the specification of a product.
  */
-package csc668assignment1;
+package records;
 
 public class ProductSpec {
     private String upc;

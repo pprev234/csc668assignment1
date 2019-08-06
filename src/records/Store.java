@@ -1,5 +1,5 @@
 
-package csc668assignment1;
+package records;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Level;

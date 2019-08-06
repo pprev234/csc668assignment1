@@ -1,4 +1,4 @@
-package csc668assignment1;
+package records;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

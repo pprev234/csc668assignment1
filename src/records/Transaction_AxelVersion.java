@@ -1,9 +1,9 @@
 /*
  * Just a stub with getters and setters.
  */
-package csc668assignment1;
+package records;
 
-import csc668assignment1.Payment.Payment;
+import records.Payment;
 
 /**
  *
