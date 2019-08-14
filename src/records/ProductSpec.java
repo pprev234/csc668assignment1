@@ -1,7 +1,7 @@
 /*
  * Author: Jie Li
  * Date: 2016/2/10
- * Purpose:1. To store the specification of a product.
+ * Purpose: To store the specification of a product.
  */
 package records;
 

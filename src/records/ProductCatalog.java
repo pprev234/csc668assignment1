@@ -47,18 +47,7 @@ public class ProductCatalog implements Serializable{
     public static boolean hasProduct(String upc){
         return specifications.get(upc) != null;
     }
-    public void sortCatelog(){
         
-    }
-    //test method 
-    //public static void main(String[] args) throws FileNotFoundException, IOException{
-       // //initiate one instance of ProductCatalog
-        //ProductCatalog pc = ProductCatalog.getProductCatelog("products.txt");
-        //pc.setProductCatelog();
-        //System.out.println(ProductCatalog.getProductSpec("1001"));
-        //System.out.println(ProductCatalog.hasProduct("1001"));
-    //}
-    
 }
 
     
