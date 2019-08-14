@@ -2,10 +2,10 @@
 package records;
 
 
-import records.Payment;
-import records.CashPayment;
-import records.CheckPayment;
-import records.CreditPayment;
+import records.Payment.Payment;
+import records.Payment.CashPayment;
+import records.Payment.CheckPayment;
+import records.Payment.CreditPayment;
 
 /**
  *
