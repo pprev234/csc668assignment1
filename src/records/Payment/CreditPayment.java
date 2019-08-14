@@ -1,9 +1,7 @@
 /*
  * Only a stub for now
  */
-package records.payment;
-
-import records.Payment;
+package records.Payment;
 
 /**
  *

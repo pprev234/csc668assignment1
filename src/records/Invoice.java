@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 package records;
-import records.Payment;
-import records.CashPayment;
-import records.CheckPayment;
-import records.CreditPayment;
+import records.Payment.Payment;
+import records.Payment.CashPayment;
+import records.Payment.CheckPayment;
+import records.Payment.CreditPayment;
 import java.sql.Timestamp;
 
 import java.util.LinkedList;
