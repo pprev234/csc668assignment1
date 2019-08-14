@@ -32,16 +32,7 @@ public class TransactionReader {
         }
         return false;
     }
-    
 
-    /*
-     * e.g 
-     * this.customerName = "Jie";
-     * this.transItems_String = new String[2];
-     * transItems_String[0] = "1001 2";
-     * transItems_String[1] = "1002 1";
-     * this.payment = "CASH 10000";
-     */
     public Transaction getNextTransaction() throws IOException{
         //read the first line of item
         this.line = this.in.readLine();
@@ -61,18 +52,4 @@ public class TransactionReader {
         
     }
 
-    //public static void main(String[] args) throws FileNotFoundException, IOException{
-        //TransactionReader tr = new TransactionReader("Transactions.txt");
-        //ProductCatalog.getProductCatelog("products.txt").setProductCatelog();
-        //while(tr.hasMoreTransactions()){
-             //Transaction t = tr.getNextTransaction(); 
-             //System.out.println("printing tranItems:");
-             //t.printTransItems();
-             //Invoice i = new Invoice(t);
-             //i.print();
-        //}
-       
-
-    //}
-    
 }

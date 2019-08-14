@@ -61,7 +61,7 @@ public class GUITransactionReader {
             }
         }
         //A complete Transaction is all set
-        flag = false;//let GUI continue
+        flag = false; //let GUI continue
         notify();
         return true;
     }
