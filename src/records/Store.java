@@ -123,7 +123,6 @@ public class Store {
         manager.initializePost(store);
         store.setCatalog(manager.initializeProductCatalog(PRODUCTSFILE));
         manager.initializeSalesLog(store);
-        //TransactionReader t = new TransactionReader(TRANSACTIONSFILE);
         final GUITransactionReader t = new GUITransactionReader();
         //set up the GUI for Post
         try {
