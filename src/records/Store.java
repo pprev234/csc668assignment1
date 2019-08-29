@@ -1,22 +1,22 @@
 
 package records;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
-  *
-  * Author: Paul Previde
-  * Store class: Provides services to keep track of the store and its various 
-  * components.  Singleton design concepts are used, as there should be only one
-  * Store instance. Store communicates with other classes, to which it delegates
-  * various responsibilities.* @author pprevide
-  */
+ * Author: Paul Previde
+ * Store class: Provides services to keep track of the store and its various
+ * components.  Singleton design concepts are used, as there should be only one
+ * Store instance. Store communicates with other classes, to which it delegates
+ * various responsibilities.*
+ */
 
 public class Store {
-      
-    private static Store store = null; // store is a singleton
+
+    private static Store store = null;
     private boolean isOpen;
     private Manager manager;
     private static final String NAME = "Apple Store";
@@ -24,17 +24,17 @@ public class Store {
     private ProductCatalog catalog;
     private SalesLog salesLog;
 
-    // FILENAME holds the text file that contains products
     private final static String PRODUCTSFILE = "products.txt";
     private final static String TRANSACTIONSFILE = "Transactions.txt";
 
     // There is no public constructor and no default, no-arg constructor
-    protected Store () { }
+    protected Store() {
+    }
 
     // createStore() method is responsible for creating the single Store instance
     private static void createStore() {
-        if (store==null) {
-            store = new Store();
+        if (Store.store == null) {
+            Store.store = new Store();
         }
     }
 
@@ -48,9 +48,9 @@ public class Store {
 
     public void initializePost() {
         try {
-        this.post = new Post();
+            Store.post = new Post();
         } catch (Exception e) {
-            
+
             System.out.println("Transactions file not found, program will exit.");
             System.exit(1);
         }
@@ -108,12 +108,12 @@ public class Store {
         this.salesLog = salesLog;
     }
 
-    public static String getStoreName(){
+    public static String getStoreName() {
         return NAME;
     }
 
 
-    public static void main (String[] args) throws FileNotFoundException, IOException {    
+    public static void main(String[] args) throws FileNotFoundException, IOException {
         createStore();
         // Manager causes a series of initialization steps to be conducted:
         // (1) open store (2) initialize the Post 
@@ -133,36 +133,28 @@ public class Store {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PostGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PostGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PostGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
+                javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(PostGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
                     new PostGUI(t).setVisible(true);
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(PostGUI.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (IOException ex) {
                     Logger.getLogger(PostGUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
-        while(t.hasMoreTransactions()){
+        while (t.hasMoreTransactions()) {
             Transaction newTransaction = t.getCurrentTransaction();
             Store.post.processTransaction(newTransaction);
-            Invoice invoice= Store.post.getInvoice();
+            Invoice invoice = Store.post.getInvoice();
             invoice.print();
-            //add invoice to salescatalog 
-            store.getSalesLog().recordInvoice(invoice);          
+            store.getSalesLog().recordInvoice(invoice);
         }
 
         manager.closeStore(store);
-    } // end main method
+    }
 
 }
