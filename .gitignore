@@ -4,10 +4,6 @@
 
 tomcat
 
-#
-# Default excludes
-#
-
 # Binaries
 *.7z
 *.dmg
@@ -46,7 +42,8 @@ dist/
 nbdist/
 nbactions.xml
 nb-configuration.xml
-
+nbproject
+nbproject
 
 # OS
 .DS_Store
