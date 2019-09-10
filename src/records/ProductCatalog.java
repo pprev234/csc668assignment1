@@ -7,47 +7,52 @@
  */
 package records;
 
-//ProductCatelog is a singleton
+//ProductCatalog is a singleton
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashMap;
 
-public class ProductCatalog implements Serializable{
+public class ProductCatalog implements Serializable {
     private static HashMap specifications = new HashMap();
     private static ProductCatalog pc = null;
     private static ProductReader pr = null;
-    private ProductCatalog(String filename) throws FileNotFoundException{
+
+    private ProductCatalog(String filename) throws FileNotFoundException {
         this.pr = new ProductReader(filename);
     }
-    
-    public static ProductCatalog getProductCatelog(String filename) throws FileNotFoundException{
-        if(pc == null){
+
+    public static ProductCatalog getProductCatelog(String filename) throws FileNotFoundException {
+        if (pc == null) {
             //initiate an instance of ProductCatalog
-               pc = new ProductCatalog(filename);
+            pc = new ProductCatalog(filename);
         }
         return pc;
     }
-    public void setProductCatelog() throws IOException{
-        while(pr.hasMoreProduct()){
+
+    public void setProductCatalog() throws IOException {
+        while (pr.hasMoreProduct()) {
             ProductSpec newProductSpec = pr.getNextProduct();
             addNewProductSpec(newProductSpec);
         }
     }
-    public void addNewProductSpec(ProductSpec newProductSpec){
+
+    public void addNewProductSpec(ProductSpec newProductSpec) {
         //add newProductSpec to hashmap
         specifications.put(newProductSpec.getUpc(), newProductSpec);
-        
-    } 
-    //get the product specification according to a upc
-    public static ProductSpec getProductSpec(String upc){
-        return (ProductSpec)specifications.get(upc);
+
     }
-    public static boolean hasProduct(String upc){
+
+    //get the product specification according to a upc
+    public static ProductSpec getProductSpec(String upc) {
+        return (ProductSpec) specifications.get(upc);
+    }
+
+    public static boolean hasProduct(String upc) {
         return specifications.get(upc) != null;
     }
-        
+
 }
 
     
