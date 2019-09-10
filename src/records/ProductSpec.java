@@ -9,33 +9,40 @@ public class ProductSpec {
     private String upc;
     private String description;
     private float unitPrice;
-    public ProductSpec(String upc, String description, float unitPrice){
+
+    public ProductSpec(String upc, String description, float unitPrice) {
         this.upc = upc;
         this.description = description;
         this.unitPrice = unitPrice;
-        
+
     }
-    public void setUpc(String upc){
+
+    public void setUpc(String upc) {
         this.upc = upc;
     }
-    public String getUpc(){
+
+    public String getUpc() {
         return this.upc;
     }
-    public void setDescription(String description){
+
+    public void setDescription(String description) {
         this.description = description;
     }
-    public String getDescription(){
+
+    public String getDescription() {
         return this.description;
     }
-    public void setUnitPrice(float unitPrice){
+
+    public void setUnitPrice(float unitPrice) {
         this.unitPrice = unitPrice;
     }
-    public float getUnitPrice(){
+
+    public float getUnitPrice() {
         return this.unitPrice;
     }
-    
+
     @Override
-    public String toString(){
-        return "upc: "+ this.upc + " description: " + this.description + " price: "+ this.unitPrice;
+    public String toString() {
+        return "upc: " + this.upc + " description: " + this.description + " price: " + this.unitPrice;
     }
 }
