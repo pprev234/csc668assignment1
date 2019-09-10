@@ -14,19 +14,22 @@ import java.io.IOException;
 public class Post {
     private Transaction currentTransaction;
     private Invoice currentInvoice;
-    public Post(){    
+
+    public Post() {
     }
-    public void processTransaction(Transaction newTransaction){
+
+    public void processTransaction(Transaction newTransaction) {
         this.currentTransaction = newTransaction;
         this.setInvoice();
     }
-  
-    public void setInvoice(){
+
+    public void setInvoice() {
         this.currentInvoice = new Invoice(this.currentTransaction);
     }
-    public Invoice getInvoice(){
+
+    public Invoice getInvoice() {
         return this.currentInvoice;
     }
-    
-    
+
+
 }
